@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login inventario</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/inventario.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/miestilo.css') }}">
+    <!--<link rel="stylesheet" href="css/miestilo.css">-->
+</head>
+<body>
+    <section>
+        <div class="login">
+            <div class="titulo">
+                <h2>Inicio de sesión</h2>
+            </div>
+            <div class="f_acceso">
+                <form action="" method="GET">
+                    <div class="solicitar">
+                        <span>
+                            <input type="text" placeholder="Nombre de usuario"><br>
+                            <input type="password" placeholder="Contraseña">
+                        </span>
+                        
+                    </div>
+                    <div class="entrar">
+                        <input type="submit" value="Ingresar">
+                    </div>
+                    <div class="flex">
+                        <div class="recordar">
+                            <span class="check">
+                                <p><input type="checkbox">Recordar usuario</p>
+                            </span>
+                            <span class="nav">
+                                <a href="{{ url_for('recuperar_vista') }}">Recuperar contraseña</a>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <div class="footer">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo" width="50" height="50">
+        </div>
+        <div class="nombre">
+            <p><span class="nempresa">Jelds</span></p><p><span class="copy"> Copyright @ 2021, Jelds.Inc </span></p>
+        </div>
+    </div>
+</body>
+</html>

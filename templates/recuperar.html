@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar contraseña</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/inventario.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/miestilo.css') }}">
+</head>
+<body>
+    <section class="crecuperar">
+        <div class="recuperar">
+            <div class="trecuperar">
+                <h2>Olvido su contraseña?</h2>
+            </div>
+            <div class="parrafo">
+                <p>
+                    Inserte su correo electrónico a continuación y le enviaremos una nueva contraseña. Si aún no puede iniciar sesión, comuníquese con el administrador de su sistema para restablecer su contraseña.
+                </p>
+            </div>
+            <div class="f_recuperar">
+                <form action="" method="GET">
+                    <div class="solicitar_correo">
+                        <p>Correo electrónico</p>
+                        <span>
+                            <input type="text">
+                        </span>
+                    </div>
+                    <div class="enviar">
+                        <input type="submit" value="Generar nueva contraseña">
+                        <br><br>
+                        <a href="{{ url_for('login_vista') }}">Volver a inicio de sesión</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <div class="footer">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo" width="50" height="50">
+        </div>
+        <div class="nombre">
+            <p><span class="nempresa">Jelds</span></p><p><span class="copy"> Copyright @ 2021, Jelds.Inc </span></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,182 @@
+body {
+    background-image: radial-gradient(circle at 50% 50%, #9a8dfa 0, #7381fd 25%, #3c78f2 50%, #0059e3 75%, #0041d5 100%);;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+section{
+    background-color: white ;
+    overflow: hidden;
+    border: 2px solid rgb(14, 3, 170);
+    border-radius: 10px;
+    width: 30%;
+    margin: 65px auto;
+    box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.9);
+}
+
+/*Inventario html*/
+
+.login{
+    min-height: 60vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.titulo{
+    color: #3c78f2;
+    text-align: center;
+    font-size: 23px;    
+    font-weight: bold;
+}
+
+.titulo h2{
+    margin-top: 30px;
+}
+    
+.f_acceso{
+    text-align: center;
+}
+
+.solicitar input{
+    margin-top: 40px;
+    width: 65%;
+    border: none;
+    border-bottom: 2px solid #0041d5;
+}
+
+.solicitar input:focus{
+    background-color: #c5cafc;
+    border-radius: 2px;
+}
+
+.solicitar input::placeholder{
+    font-size: 15px;
+    font-style: italic;
+}
+
+.solicitar input:hover::placeholder{
+    font-size: 18px;
+}
+
+.entrar input{
+    margin-top: 40px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #0041d5;
+    padding: 4px 25px 4px 25px;
+    border-radius: 10px;
+    border-color: #3c78f2;
+    box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.2);
+}
+
+.entrar input:hover{
+    font-size: 18px;
+    padding: 5px 26px 5px 26px;
+}
+
+.flex{
+    margin: 40px 12px 40px 12px;
+}
+
+.recordar{
+    display: flex;
+    align-content: center;
+}
+
+.check p{
+    margin: 0 auto 0 30px;
+}
+
+.nav a{
+    margin: 0 0 0 10px;
+}
+
+.footer {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.logo img{
+    filter:invert(0.65) sepia(1) hue-rotate(1deg) saturate(0%);
+}
+.nombre p  {
+    margin:3px 0 0 5px;
+}
+
+.nombre .nempresa{
+    font-size: 20px;
+    color:white;
+}
+
+.nombre .copy{
+    font-size: 12px;
+    color:white;
+}
+
+/*Recuperar contraseña*/
+
+.crecuperar{    
+    background-color: white ;
+    overflow: hidden;
+    border: 2px solid rgb(14, 3, 170);
+    border-radius: 10px;
+    width: 35%;
+    margin: 65px auto;
+    box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.9);
+}
+
+.recuperar{
+    min-height: 55vh;
+    margin-bottom: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 0;
+}
+
+.trecuperar{
+    color: #3c78f2;
+    text-align: center;
+    font-size: 23px;    
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.parrafo{
+    margin-top: 0 ;
+    color: black;
+    text-align: left;
+    font-style: italic;
+    margin: 0 25px 0 40px;
+}
+
+.f_recuperar{
+    text-align: center;
+}
+
+.solicitar_correo p{
+    margin: auto auto;
+    text-align: left;
+    margin: 30px auto 15px 40px;
+}
+
+.solicitar_correo input{
+    width: 80%;
+    border-color: #909bff;
+    padding: 2px 2px 2px 2px;
+}
+
+.enviar input{
+    margin-top: 25px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #0041d5;
+    padding: 4px 25px 4px 25px;
+    border-radius: 10px;
+    border-color: #3c78f2;
+    box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.2);
+}
+
+.enviar input:hover{
+    font-size: 16px;
+    border-radius: 5px 26px 5px 26px;
+}
