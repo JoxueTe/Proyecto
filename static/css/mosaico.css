@@ -1,0 +1,36 @@
+#mosaico {
+    margin: 1rem auto;
+    width:100%;
+    max-width:1500px;
+    column-count: 5;
+}
+#mosaico article {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+
+/* Móviles en horizontal o tablets en vertical */
+
+
+@media (max-width: 1300px) { 
+    #mosaico {
+        columns:3;
+    }
+
+}
+
+@media (max-width: 767px) { 
+    #mosaico {
+        columns:2;
+    }
+
+}
+        
+/* Móviles en vertical */
+
+@media (max-width: 520px) {
+    #mosaico {
+        columns: 1;
+    }
+}

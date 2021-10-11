@@ -21,11 +21,11 @@ def home_vista():
 @app.route("/usuarios")
 def usuarios_vista():
     items = [
-    {'img': 'img\inventario.png', 'id': 1, 'name': 'Pepito Perez', 'cantMin': '893212299897', 'price': 500},
-    {'img': 'img\inventario.png', 'id': 2, 'name': 'Sutano Gonzalez', 'cantMin': '893212299897', 'price': 500},
-    {'img': 'img\inventario.png', 'id': 3, 'name': 'Mengano Beltrán', 'cantMin': '893212299897', 'price': 500},
-    {'img': 'img\inventario.png', 'id': 3, 'name': 'Juan ', 'cantMin': '893212299897', 'price': 500},
-    {'img': 'img\inventario.png', 'id': 4, 'name': 'Phone', 'cantMin': '893212299897', 'price': 500}
+    {'img': 'img/inventario.png', 'id': 1, 'name': 'Pepito Perez', 'cantMin': '893212299897', 'price': 500},
+    {'img': 'img/inventario.png', 'id': 2, 'name': 'Sutano Gonzalez', 'cantMin': '893212299897', 'price': 500},
+    {'img': 'img/inventario.png', 'id': 3, 'name': 'Mengano Beltrán', 'cantMin': '893212299897', 'price': 500},
+    {'img': 'img/inventario.png', 'id': 3, 'name': 'Juan ', 'cantMin': '893212299897', 'price': 500},
+    {'img': 'img/inventario.png', 'id': 4, 'name': 'Phone', 'cantMin': '893212299897', 'price': 500}
 ]
     size=math.ceil(len(items)/4)
     var="Usuarios"
