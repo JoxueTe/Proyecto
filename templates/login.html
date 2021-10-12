@@ -10,6 +10,7 @@
     <!--<link rel="stylesheet" href="css/miestilo.css">-->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/sweetalert2.min.css') }}">
 </head>
 <body>
     <section>
@@ -18,21 +19,21 @@
                 <h2>Inicio de sesión</h2>
             </div>
             <div class="f_acceso">
-                <form action="" method="GET">
+                <form action="" name="fregistro" method="GET" onsubmit="validar_formulario()">
+                    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
                     <div class="solicitar">
                         <span>
-                            <input type="text" placeholder="Nombre de usuario"><br>
-                            <input type="password" placeholder="Contraseña">
-                        </span>
-                        
+                            <input type="text" class="form-control " name="nombre" maxlength="20" id="nombre" placeholder="Nombre de usuario" required><br>
+                            <input type="password" class="form-control" placeholder="Contraseña" required name="pass">
+                        </span>      
                     </div>
                     <div class="entrar">
-                        <input type="submit" value="Ingresar">
+                        <input type="submit" class="btn btn-outline-primary btn-lg btn-blockk" value="Ingresar" >
                     </div>
                     <div class="flex">
                         <div class="recordar">
                             <span class="check">
-                                <p><input type="checkbox">Recordar usuario</p>
+                                <p><input  type="checkbox"> Recordar usuario</p>
                             </span>
                             <span class="nav">
                                 <a href="{{ url_for('recuperar_vista') }}">Recuperar contraseña</a>
@@ -43,15 +44,16 @@
             </div>
         </div>
     </section>
-    <footer>
-        <div class="footer">
+    <footer class="card-footer">
+        <div class=" footer">
             <div class="logo">
                 <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo" width="50" height="50">
             </div>
             <div class="nombre">
-                <p><span class="nempresa">Jelds</span></p><p><span class="copy"> Copyright @ 2021, Jelds.Inc </span></p>
+                <p class="nempresa"><span>Jelds</span></p><p class="copy"><span> Copyright @ 2021, Jelds.Inc </span></p>
             </div>
         </div>
     </footer>
+<script src="{{ url_for('static', filename='js/sweetalert2.min.js') }}"></script>
 </body>
 </html>
