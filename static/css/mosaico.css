@@ -1,36 +1,114 @@
-#mosaico {
-    margin: 1rem auto;
-    width:100%;
-    max-width:1500px;
-    column-count: 5;
-}
-#mosaico article {
-    break-inside: avoid;
-    page-break-inside: avoid;
+.lista_titulo{
+    margin: 20px 30px 10px 30px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
+.lista_titulo a{
+    color: #103373 !important;
+}
+
+.buscar_agregar{
+    text-align: right;
+    margin-right: 30px;
+    font-size: 20px;
+}
+
+.buscar_agregar input[type="submit"]{
+    font-weight: bold;
+    background-color: #2b78e4;
+    color: white;
+    border-radius: 8px;
+    padding: 4px 6px 4px 6px;
+}
+
+.buscar_agregar input[type="search"]{
+    font-weight: bold;
+    color: rgb(49, 49, 49);
+    border-radius: 8px;
+    padding: 4px 6px 4px 6px;
+    width: 40%;
+    margin-right:20px;
+}
+
+.presentacion {
+    margin-top: 40px !important;
+    background-color: #eeeeee;
+    border: solid;
+    border-color: #073763;
+    border-radius: 13px;
+    margin: auto;
+    width: 96%;
+}
+
+.presentacion h2{
+    margin-top: 5px;
+    text-align: center;
+    color: #073763;
+}
+
+.presentacion .mosaico {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: auto;
+    /* text-align: center !important;
+    margin: 20px auto;
+    width:95%;
+    max-width:1500px;
+    column-count: 4; */
+}
+
+.presentacion .mosaico article {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin: 40px;
+    border: solid;
+    border-color: #073763;
+    border-radius: 13px;
+
+
+}
+
+.presentacion .mosaico article figure {
+    text-align: center;
+    margin: 0px;
+}
+
+.presentacion .mosaico article figure img {
+    margin-top: 5px;
+    width: 95%;
+}
+
+.presentacion .mosaico article .nombre-datos{
+    margin: 5px 0px 5px 10px;
+}
+
+.presentacion .mosaico article .nombre-datos .nombre{
+    margin-bottom: 0px;
+    
+}
 
 /* Móviles en horizontal o tablets en vertical */
 
 
-@media (max-width: 1300px) { 
-    #mosaico {
-        columns:3;
+@media (max-width: 1130px) { 
+    .presentacion .mosaico {
+        grid-template-columns: repeat(3, 1fr);
     }
 
 }
 
 @media (max-width: 767px) { 
-    #mosaico {
-        columns:2;
+    .presentacion .mosaico {
+        grid-template-columns: repeat(2, 1fr);
     }
 
 }
         
 /* Móviles en vertical */
 
-@media (max-width: 520px) {
-    #mosaico {
-        columns: 1;
+@media (max-width: 480px) {
+    .presentacion .mosaico {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
