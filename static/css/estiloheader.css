@@ -1,0 +1,44 @@
+body {
+    color: white
+}
+
+body section {
+    color: #103373;
+}
+
+nav {
+    background-color: #103373;
+}
+
+.navbar-brand{
+    font-size: 30px;
+    color: #E5E5E5 !important;
+}
+
+nav div a{
+    font-size: 22px;
+    color: gray
+}
+
+.navbar-brand img {
+    filter:invert(0.8) sepia(1) hue-rotate(1deg) saturate(0%);
+}
+
+
+.logo img {
+    margin-top: 0.3em; 
+}
+
+col p, h4 {
+    margin-bottom: 0px;
+    text-align: left;
+}
+
+col h4, p {
+    margin-bottom: 0px;
+    text-align: left;
+}
+
+footer{
+    margin-top: 30px;
+}

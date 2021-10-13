@@ -14,12 +14,13 @@
     font-size: 20px;
 }
 
-.buscar_agregar input[type="submit"]{
+.buscar_agregar input[type="button"]{
     font-weight: bold;
     background-color: #2b78e4;
     color: white;
     border-radius: 8px;
-    padding: 4px 6px 4px 6px;
+    padding: 3px 6px 5px 6px;
+    text-align: center;
 }
 
 .buscar_agregar input[type="search"]{
@@ -51,11 +52,6 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: auto;
-    /* text-align: center !important;
-    margin: 20px auto;
-    width:95%;
-    max-width:1500px;
-    column-count: 4; */
 }
 
 .presentacion .mosaico article {

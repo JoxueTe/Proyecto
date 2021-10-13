@@ -1,0 +1,64 @@
+.nombre_titulo{
+    margin: 20px 30px 10px 30px;
+    font-size: 25px;
+    font-weight: bold;
+    display: flex;
+}
+
+.nombre{
+    color: #073763 !important;
+}
+
+.img{
+    margin-top: 3px;
+}
+
+.presentacion h2{
+    margin-top: 5px;
+    padding-bottom: 20px;
+    text-align: center;
+    color: #073763;
+}
+
+.foto-formulario{
+    display: flex !important;
+    gap: 50px;
+    margin: 20px 50px 20px 50px;
+}
+
+.foto_producto{
+    text-align: center;
+}
+
+.foto_producto img{
+    width: 300px;
+    margin-bottom: 20px;;
+}
+
+
+.formulario form{
+    display: grid !important;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+
+}
+
+.formulario form input{
+    width: 95%;
+}
+
+.presentacion {
+    margin-top: 40px !important;
+    background-color: #eeeeee;
+    border: solid;
+    border-color: #073763;
+    border-radius: 13px;
+    margin: auto;
+    width: 96%;
+}
+
+.presentacion h2{
+    margin-top: 5px;
+    text-align: center;
+    color: #073763;
+}
