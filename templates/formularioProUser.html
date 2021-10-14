@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.min.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/estiloproducto.css') }}">
+{% endblock %}
+
+{% block title %}
+{{submenu}} {{menu}}
+{% endblock %}
+
+{% block content %}
+<section >
+    <div class="nombre_titulo">
+        <div class="img">
+            {% if submenu=='Registrar' %}
+            <img src="{{ url_for('static', filename='img/add.png') }}" alt="" width="32" height="32" class="d-inline-block align-text-top">
+            {% elif submenu=='Editar' %}
+            <img src="{{ url_for('static', filename='img/edit.png') }}" alt="" width="32" height="32" class="d-inline-block align-text-top">
+            {% else %}
+            <img src="{{ url_for('static', filename='img/info.png') }}" alt="" width="32" height="32" class="d-inline-block align-text-top">
+            {% endif %}
+        </div>
+        <div class="nombre">
+            <p>{{submenu}} {{menu}}</p>
+        </div>
+    </div> 
+    <div class="presentacion">
+        <h2>{{submenu}} {{menu}} </h2>
+        <div class="foto-formulario">
+            <div class="foto_producto">
+                <img src="{{ url_for('static', filename='img/photo.png') }}"/>
+                <input type="file" value="Agregar imagen">
+            </div>
+            <div class="formulario">
+                <form action="" method="GET">
+                    <div>
+                        <p for="">
+                            ID:       
+                        </p>
+                        <input required type="number">
+                    </div>
+                    <div>
+                        <p for="">
+                            Nombre:
+                        </p>
+                        <input required type="text">
+                    </div>
+                    <div>
+                        <p for="">
+                            e-mail:
+                        </p>
+                        <input required type="email">
+                    </div>
+                    <div>
+                        <p for="">
+                            Teléfono de contacto:
+                        </p>
+                        <input required type="number" min="3000000000" max="3600000000">
+                    </div>
+                    <div>
+                        <p for="">
+                            Ciudad:
+                        </p>
+                        <input required type="text">
+                    </div>
+                    <div>
+                        <p for="">
+                            Dirección:
+                        </p>
+                        <input required type="text" min="">
+                    </div>
+                    <div>
+                        <p for="">
+                            Fecha de registro:
+                        </p>
+                        <input required type="date" placeholder="dd/mm/aaaa" required>
+                    </div>
+                    <div>
+                        <p for="">
+                            Descripción:
+                        </p>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <p for="">
+                            Proveedores:
+                        </p>
+                        <input type="text">
+                    </div>
+                    {% if menu=='Usuarios' %}
+                    <div>
+                        <p for="">
+                            Rol:       
+                        </p>
+                        {{ check.rol }}
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </diiv>
+</section>
+{% endblock %}

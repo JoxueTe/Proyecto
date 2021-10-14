@@ -22,10 +22,18 @@
         <input type="search" placeholder="Busca por nombre o id">
         <input type="button" value="+{{menu}}">
     </div>
-    <div>
-        {% block checkbox %}
-        
-        {% endblock %}
+    <div class="check">
+        {% if menu=='Productos' %}
+        <div class="check_proveedores">
+            {{ check.proveedores }}
+            {{ check.proveedores.label }}     
+        </div>
+        <div class="check_existencia">
+            {{ check.poca_existencia }}
+            {{ check.poca_existencia.label }} 
+        </div>
+
+        {% endif %}
     </div>
     <div class="presentacion">
         <h2>{{menu}}</h2>
@@ -33,9 +41,16 @@
         <div class="mosaico">
             {% for item in items %}
             <article>
-                <!-- <a href="https://www.campusmvp.es/catalogo/Product-Desarrollo-de-aplicaciones-web-con-Angular-7_232.aspx" target="_blank"> -->
-                <figure>
-                    <img src={{ url_for('static', filename=item.img) }} />
+                {% if menu=='Productos' %}
+                <a href="{{url_for('info_producto_vista') }}">
+                {% elif menu=='Proveedores' %}
+                <a href="{{url_for('info_proveedor_vista') }}">
+                {% else %}
+                <a href="{{url_for('info_usuario_vista') }}">
+                {% endif %}
+                <figure id="imagen">
+                    <img src={{ url_for('static', filename=item.img) }} id="fotomosaico"/>
+                    <img src={{ url_for('static', filename='img/edit.png') }} id="editar"/>
                 </figure>
                 <div class="nombre-datos">
                     <h5 style="color: Black" class="nombre">{{ item.name }}</h5>
@@ -45,8 +60,20 @@
                     <p style="color: Black" class="datos">{{ item.telefono }}</p>
                     {% endif %}
                 </div>
-                <!-- </a> -->
+                </a>
             </article>
+                <!-- <div class='editar'>
+                    {% if menu=='Productos' %}
+                    <a href="{{url_for('editar_producto_vista') }}">
+                    {% elif menu=='Proveedores' %}
+                    <a href="{{url_for('editar_proveedor_vista') }}">
+                    {% else %}
+                    <a href="{{url_for('editar_usuario_vista') }}">
+                    {% endif %}
+                    <figure>
+                        <img src={{ url_for('static', filename='img/edit.png') }} />
+                    </figure>
+                </div> -->
             {% endfor %}
         </div>
     </div>

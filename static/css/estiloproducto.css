@@ -21,7 +21,8 @@
 }
 
 .foto-formulario{
-    display: flex !important;
+    display: grid !important;
+    grid-template-columns: 1fr 2fr;
     gap: 50px;
     margin: 20px 50px 20px 50px;
 }
@@ -44,7 +45,7 @@
 }
 
 .formulario form input{
-    width: 95%;
+    width: 80%;
 }
 
 .presentacion {
