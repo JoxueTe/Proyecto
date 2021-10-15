@@ -22,11 +22,10 @@
             </div>
             <div class="f_recuperar">
                 <form action="" name="fregistro" method="GET" onsubmit="validar_correo()">
-                    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
                     <div class="solicitar_correo">
                         <p>Correo electrónico</p>
                         <span>
-                            <input type="text" required class="form-control" name="correo" id="correo">
+                            <input type="email" required class="form-control" name="correo" id="correo">
                         </span>
                     </div>
                     <div class="enviar">
@@ -50,5 +49,6 @@
         </div>
     <!-- <script src="{{ url_for('static', filename='js/sweetalert2.min.js') }}"></script> -->
     </footer>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

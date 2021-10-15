@@ -32,9 +32,42 @@
 
 .foto_producto img{
     width: 300px;
-    margin-bottom: 20px;;
+    margin-bottom: 20px;
 }
 
+/* 
+.añadir{
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+    gap: 400px;
+
+} */
+
+.col{
+    position: relative;    
+}
+
+#btn_enviar{
+    background-image: url(/static/img/boton-agregar.png);
+    background-size: cover;
+    width:50px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+#btn_cancelar{
+    background-image: url(/static/img/cancelar.png);
+    background-size: cover;
+    width:50px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.añadir h2{
+    text-align: center;
+    gap: 100px;
+}
 
 .formulario form{
     display: grid !important;
