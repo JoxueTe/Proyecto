@@ -52,3 +52,9 @@ flask run
 
 URL del Proyecto
 https://github.com/JoxueTe/Proyecto.git
+
+Comandos Git en Git Bash
+
+Iniciar Git en una carpeta determinada clonando una rama específica de un proyecto del respositorio en github
+git clone -b <Nombre de la Rama>  <URL del Proyecto> <Nombre de la carpeta>
+

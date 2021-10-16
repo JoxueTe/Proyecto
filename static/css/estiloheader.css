@@ -26,7 +26,7 @@ nav div a{
 
 
 .logo img {
-    margin-top: 0.3em; 
+    margin-top: 0.3em;
 }
 
 col p, h4 {
@@ -42,29 +42,51 @@ col h4, p {
 footer{
     margin-top: 30px;
 }
-/* Dropdown para Sesión y Perfil */
+/* Lista flotante para Cierre de Sesión y Perfil */
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: relative;
-    background-color: #f9f9f9;
-    width: 100%;
-    overflow:auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown:hover .dropdown-content {
+#user {
+    margin:auto;
+    width:500px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#user ul, ol{
+    list-style: none;
+}
+#user li a{
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
     display: block;
-  }
+
+
+}
+
+#user  li:hover {
+    background-color: #4e4a4a;
+    transform: translateY(-5px);
+
+
+}
+
+#user  li a:hover {
+    background-color: #4e4a4a;
+    transform: translateY(-5px);
+
+
+}
+
+#user  li ul{
+    display:none;
+    position:absolute;
+    min-width: 140px;
+}
+#user  li:hover > ul{
+    display:block;
   
-  
-  .desc {
-    padding: 15px;
-    text-align: center;
-  }
+}
+
+#user img{
+    align-content:right
+}
