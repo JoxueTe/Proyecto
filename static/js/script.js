@@ -31,5 +31,38 @@ function validar_correo(){
         console.log("enviando")
         return false;
     }
-    
+}
+
+
+// function eliminar(){
+//     prompt("Eliminar")
+// }
+
+//****************pop up */
+
+var btnAbrirPopup = document.getElementById('btn-eliminar'),
+	overlay = document.getElementById('overlay'),
+	popup = document.getElementById('popup'),
+	btnCerrarPopup = document.getElementById('btn-cerrar-popup');
+
+btnAbrirPopup.addEventListener('click', function(){
+	overlay.classList.add('active');
+	popup.classList.add('active');
+});
+
+btnCerrarPopup.addEventListener('click', function(e){
+	e.preventDefault();
+	overlay.classList.remove('active');
+	popup.classList.remove('active');
+});
+
+function send(){
+    var id=document.getElementById("id");
+    alert("entro")
+
+    if (id.value.length==0 || id.value.length<3){
+        alert("el codigo debe tener almenos 3 digitos");
+        passid.focus();
+        return false;
+    }
 }

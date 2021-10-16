@@ -27,25 +27,49 @@
         </div>
     </div> 
     <div class="presentacion">
-        <h2>{{submenu}} Producto</h2>
+        <!-- <h2>{{submenu}} Producto</h2> -->
+        <div class="container">
+            <div class="row m-sm-2" id="contenedor_titulo">
+                <div class="col-10">
+                     <h2>{{submenu}} Producto</h2>
+                 </div>
+                 {%if submenu=='Registrar' or submenu =='Editar'%}
+                 <div class="col">
+                     <input type="submit" form="formulario_producto" class="btn btn-outline-success" id="btn_enviar" value="" onsubmit="send()">
+                 </div>
+                 <div class="col">
+                     <input type="reset" form="formulario_producto" class="btn btn-outline-danger" id="btn_cancelar" onclick="location.reload()" value="">
+                 </div>
+                 {% endif %}
+            </div>
+        </div>
         <div class="foto-formulario">
-            <div class="foto_producto">
+            <!-- <div class="foto_producto">
                 <img src="{{ url_for('static', filename='img/photo.png') }}"/>
                 <input type="file" value="Agregar imagen">
+            </div> -->
+            <div class="foto_producto">
+                <div class="contenedor_img">
+                    <div id="preview" class="imagen"><img src="/static/img/photo.png" alt=""></div>
+                </div>
+                <div class="input-group">
+                    <input type="file" class="" id="seleccionArchivos" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                    <script src="/static/js/pre.js"></script>
+                </div>
             </div>
             <div class="formulario">
-                <form action="" method="GET">
+                <form action="" id="formulario_producto" method="GET">
                     <div>
                         <p for="">
                             ID:       
                         </p>
-                        <input required type="number">
+                        <input required type="number" min="100" max="100000">
                     </div>
                     <div>
                         <p for="">
                             Nombre:
                         </p>
-                        <input required type="text">
+                        <input required type="text" minlength="4" maxlength="25">
                     </div>
                     <div>
                         <p for="">
@@ -69,7 +93,7 @@
                         <p for="">
                             Precio:
                         </p>
-                        <input required type="number" min="100000">
+                        <input required type="number" min="10000">
                     </div>
                     <div>
                         <p for="">
@@ -87,13 +111,13 @@
                         <p for="">
                             Descripción:
                         </p>
-                        <input type="text">
+                        <input type="text" minlength="5" maxlength="30">
                     </div>
                     <div>
                         <p for="">
                             Proveedores:
                         </p>
-                        <input type="text">
+                        <input type="text" required minlength="2">
                     </div>
                 </form>
             </div>
