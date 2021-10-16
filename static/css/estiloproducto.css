@@ -63,3 +63,25 @@
     text-align: center;
     color: #073763;
 }
+
+.col{
+    position: relative;  
+    display: grid;
+    justify-content: center;  
+}
+
+#btn_enviar{
+    background-image: url(/static/img/anadir.png);
+    background-size: cover;
+    width:50px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+#btn_cancelar{
+    background-image: url(/static/img/cancelar.png);
+    background-size: cover;
+    width:50px;
+    height: 48px;
+    border-radius: 50%;
+}

@@ -33,3 +33,14 @@ function validar_correo(){
     }
     
 }
+
+function send(){
+    var id=document.getElementById("id");
+    alert("entro")
+
+    if (id.value.length==0 || id.value.length<3){
+        alert("el codigo debe tener almenos 3 digitos");
+        passid.focus();
+        return false;
+    }
+}
