@@ -3,7 +3,7 @@ function validar_formulario(){
     var username= document.getElementById("nombre");
     var contraseña= document.getElementById("pass");
 
-    if(username.value.length==0 || username.value.length<20){
+    if(username.value.length==0 || username.value.length<3){
         // Swal.fire(
         //   'heading',
         //   'text',
