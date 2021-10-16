@@ -27,11 +27,48 @@
         </div>
     </div> 
     <div class="presentacion">
-        <h2>{{submenu}} {{menu}} </h2>
+        <!-- <h2>{{submenu}} {{menu}} </h2> -->
+        <div class="container">
+            <div class="row m-sm-2" id="contenedor_titulo">
+                <div class="col-10">
+                     <h2>{{submenu}} {{menu}}</h2>
+                 </div>
+                 {%if submenu=='Registrar' or submenu =='Editar'%}
+                 <div class="col">
+                     <input type="submit" form="formulario_producto" class="btn btn-outline-success" id="btn_enviar" value="" onsubmit="send()">
+                 </div>
+                 <div class="col">
+                     <input type="reset" form="formulario_producto" class="btn btn-outline-danger" id="btn_cancelar" onclick="location.reload()" value="">
+                 </div>
+                 {%elif submenu=='Información'%}
+                <div class="col">
+                    <!-- <input type="submit"  class="btn btn-outline" id="btn_editar" value=""> -->
+                    {% if menu=='Productos' %}
+                    <a href="{{url_for('editar_producto_vista') }}">
+                    {% elif menu=='Proveedores' %}
+                    <a href="{{url_for('editar_proveedor_vista') }}">
+                    {% else %}
+                    <a href="{{url_for('editar_usuario_vista') }}">
+                    {% endif %}
+                        <img src={{ url_for('static', filename='img/edit.png') }}  width="50" class="sobre"/>
+                    </a>
+                </div>  
+                <div class="col">
+                    <input type="reset" form="formulario_producto" class="btn btn-outline" id="btn_delete" value="">
+                </div>
+                 {% endif %}
+            </div>
+        </div>
         <div class="foto-formulario">
+            {%if submenu != 'Información'%}
             <div class="foto_producto">
-                <img src="{{ url_for('static', filename='img/photo.png') }}"/>
-                <input type="file" value="Agregar imagen">
+                <div class="contenedor_img">
+                    <div id="preview" class="imagen"><img src="/static/img/photo.png" alt=""></div>
+                </div>
+                <div class="input-group">
+                    <input type="file" class="" id="seleccionArchivos" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                    <script src="/static/js/pre.js"></script>
+                </div>
             </div>
             <div class="formulario">
                 <form action="" method="GET">
@@ -99,6 +136,78 @@
                     {% endif %}
                 </form>
             </div>
+            {%endif%}
+            {%if submenu =='Información'%}
+            <div class="foto_producto">
+                <img src="{{ url_for('static', filename='img/photo.png') }}"/>
+            </div>
+            <div class="formulario">
+                <form action="" method="GET">
+                    <div>
+                        <p for="">
+                            ID:       
+                        </p>
+                        <input readonly type="number" value="001">
+                    </div>
+                    <div>
+                        <p for="">
+                            Nombre:
+                        </p>
+                        <input readonly type="text">
+                    </div>
+                    <div>
+                        <p for="">
+                            e-mail:
+                        </p>
+                        <input readonly type="email">
+                    </div>
+                    <div>
+                        <p for="">
+                            Teléfono de contacto:
+                        </p>
+                        <input readonly type="number" min="3000000000" max="3600000000">
+                    </div>
+                    <div>
+                        <p for="">
+                            Ciudad:
+                        </p>
+                        <input readonly type="text">
+                    </div>
+                    <div>
+                        <p for="">
+                            Dirección:
+                        </p>
+                        <input readonly type="text" min="">
+                    </div>
+                    <div>
+                        <p for="">
+                            Fecha de registro:
+                        </p>
+                        <input readonly type="date" placeholder="dd/mm/aaaa" >
+                    </div>
+                    <div>
+                        <p for="">
+                            Descripción:
+                        </p>
+                        <input readonly type="text">
+                    </div>
+                    <div>
+                        <p for="">
+                            Proveedores:
+                        </p>
+                        <input readonly type="text">
+                    </div>
+                    {% if menu=='Usuarios' %}
+                    <div>
+                        <p for="">
+                            Rol:       
+                        </p>
+                        {{ check.rol }}
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+            {%endif%}
         </div>
     </diiv>
 </section>

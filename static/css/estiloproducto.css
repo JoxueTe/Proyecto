@@ -85,3 +85,21 @@
     height: 48px;
     border-radius: 50%;
 }
+
+#btn_editar{
+    background-image: url(/static/img/edit.png);
+    background-size: cover;
+    width:46px;
+    height: 48px;
+    border-radius: 30%;
+    border-color: transparent;
+}
+
+#btn_delete{
+    background-image: url(/static/img/delete.png);
+    background-size: cover;
+    width:46px;
+    height: 48px;
+    border-radius: 30%;
+    border-color: transparent;
+}
