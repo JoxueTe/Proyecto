@@ -49,3 +49,6 @@ venv\Scripts\activate
 set FLASK_APP=app
 set FLASK_ENV=development
 flask run
+
+URL del Proyecto
+https://github.com/JoxueTe/Proyecto.git
