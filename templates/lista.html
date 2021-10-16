@@ -40,7 +40,7 @@
 
         <div class="mosaico">
             {% for item in items %}
-            <article>
+            <article class="tarjeta">
                 {% if menu=='Productos' %}
                 <a href="{{url_for('info_producto_vista') }}">
                 {% elif menu=='Proveedores' %}
@@ -50,7 +50,38 @@
                 {% endif %}
                 <figure id="imagen">
                     <img src={{ url_for('static', filename=item.img) }} id="fotomosaico"/>
-                    <img src={{ url_for('static', filename='img/edit.png') }} id="editar"/>
+                    <div class="franja">
+                        <div id="editar">
+                            {% if menu=='Productos' %}
+                            <a href="{{url_for('editar_producto_vista') }}">
+                            {% elif menu=='Proveedores' %}
+                            <a href="{{url_for('editar_proveedor_vista') }}">
+                            {% else %}
+                            <a href="{{url_for('editar_usuario_vista') }}">
+                            {% endif %}
+                                <img src={{ url_for('static', filename='img/edit.png') }} class="sobre"/>
+                            </a>
+                        </div>
+                        <div id="borrar">
+                            <!-- <form action="">
+                                <input type="button" id="btn_eliminar" value="" onclick="eliminar()">
+                            </form>
+                            <script src="/static/js/script.js"></script> -->
+                            <input type="image" src={{ url_for('static', filename='img/delete.png') }} class="sobre" id="btn-eliminar"/>
+                            <div class="overlay" id="overlay">
+                                <div class="popup" id="popup">
+                                    <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+                                    <h3>¡¡¡ Eliminación de {{menu}} !!!</h3>
+                                    <h4>¿Estás seguro que deseas eliminar el {{menu}}?</h4>
+                                    <form action="">
+                                        <input type="submit" class="btn-submit" value="Eliminar">
+                                    </form>
+                                </div>
+                            </div>
+                            <script src="/static/js/script.js"></script>
+
+                        </div>
+                    </div>
                 </figure>
                 <div class="nombre-datos">
                     <h5 style="color: Black" class="nombre">{{ item.name }}</h5>
@@ -62,18 +93,6 @@
                 </div>
                 </a>
             </article>
-                <!-- <div class='editar'>
-                    {% if menu=='Productos' %}
-                    <a href="{{url_for('editar_producto_vista') }}">
-                    {% elif menu=='Proveedores' %}
-                    <a href="{{url_for('editar_proveedor_vista') }}">
-                    {% else %}
-                    <a href="{{url_for('editar_usuario_vista') }}">
-                    {% endif %}
-                    <figure>
-                        <img src={{ url_for('static', filename='img/edit.png') }} />
-                    </figure>
-                </div> -->
             {% endfor %}
         </div>
     </div>
