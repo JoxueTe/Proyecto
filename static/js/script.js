@@ -3,7 +3,7 @@ function validar_formulario(){
     var username= document.getElementById("nombre");
     var contraseña= document.getElementById("pass");
 
-    if(username.value.length==0 || username.value.length<8){
+    if(username.value.length==0 || username.value.length<20){
         // Swal.fire(
         //   'heading',
         //   'text',
@@ -15,7 +15,7 @@ function validar_formulario(){
         return false;
     }
 
-    if (contraseña.value.length==0 || contraseña.value.length<3 ){
+    if (contraseña.value.length==0 || contraseña.value.length<8 ){
         alert("Ingrese una cotraseña");
         passid.focus();
         return false;
