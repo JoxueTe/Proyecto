@@ -1,0 +1,51 @@
+instalar en el cmd
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+
+pip install virtualenv
+
+>>> crear un entorno
+	python -m venv nombre_entorno (crear)
+	. nombre_entorno\bin\activate (Scripts) (Entrar)
+
+instalar flask
+>>> pip install Flask (instalar Flask primera vez)
+
+>>> setear las variables
+	$env:FLASK_APP="nombre_archivo.py"
+	$env:FLASK_ENV="development"
+	flask run
+
+powershell
+python -m venv nombre_entorno (NO SÉ)
+
+-----------------------------------------------------------------------------
+>>> se hacen siempre
+las demás son de instalacióN
+
+con CMD
+
+Crear Ambiente 
+> mkdir myproject
+> cd myproject
+> py -3 -m venv venv
+
+Activar venv 
+venv\Scripts\activate
+
+Instalar Flask en el ambiente:
+pip install Flask
+
+
+Correr Flask
+set FLASK_APP=app
+set FLASK_ENV=development
+flask run
+
+
+Si ya están instalados el venv y Flask
+
+venv\Scripts\activate
+set FLASK_APP=app
+set FLASK_ENV=development
+flask run
