@@ -35,7 +35,7 @@
             </ul>
             <ul class="navbar-nav mr-5">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Dashboard</a>
+                    <a class="nav-link" href="{{url_for('dashboard_vista') }}">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('productos_vista') }}">Productos</a>
@@ -47,11 +47,18 @@
                     <a class="nav-link" href="{{url_for('usuarios_vista') }}">Usuarios</a>
                 </li>
             </ul>
-            <div class="container-fluid ml-5">
-                <ul class="navbar-nav">
-                  <img src="{{ url_for('static', filename='img/user.png') }}" alt=""  width="45" height="45">
-                </ul>
-            </div>
+            <div class="dropdown">
+                
+                <img src="{{ url_for('static', filename='img/user.png') }}" alt=""  width="45" height="45">
+              <div>Usuario</div>
+              <div class="dropdown-content">
+                  <div>Sesión Iniciada</div> 
+                  <a href="/productos">Formulario Productos</a>
+                  <a href="/login">Cerrar Sesión</a>
+                  
+              </div>
+
+          </div>
         </div>
     </nav>
 

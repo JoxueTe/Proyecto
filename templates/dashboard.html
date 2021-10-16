@@ -1,0 +1,424 @@
+{% extends "base.html" %}
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div>
+    <div class="bienvenido container-sm mt-3">
+        <h2>Bienvenido a Jelds</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing 
+        elit. Dolore provident sit dicta ipsam voluptas sunt, 
+        repellendus ex perferendis maxime amet, atque quas 
+        labore molestiae veritatis nostrum iusto minima 
+        consequuntur nemo!
+        </p>
+    </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col cantidad">
+                <html>
+                    <head>
+                        <style>
+                            .cant-cont img {
+                                float: left;
+                                padding: 10px;
+                                box-shadow: 0px 0px 0px 3px rgba(16,51,115,1);
+                            }
+                            .cant-cont {
+                                text-align: center;
+                            }
+                            .cant-cont span {
+                                font-size: x-large;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <p class="cant-cont">
+                            <a href=""> <img src="{{ url_for('static', filename='img/market-bag.png') }}" alt="" width="80px" height="80px"> </a>
+                            <span>Cantidad</span> <br>
+                            Tipos de productos
+                        </p>
+                    </body>
+                </html>
+            </div>
+            <div class="col cantidad">
+                <html>
+                    <head>
+                        <style>
+                            .cant-cont img {
+                                float: left;
+                                padding: 10px;
+                                box-shadow: 0px 0px 0px 3px rgba(16,51,115,1);
+                            }
+                            .cant-cont {
+                                text-align: center;
+                            }
+                            .cant-cont span {
+                                font-size: x-large;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <p class="cant-cont">
+                            <a href=""> <img src="{{ url_for('static', filename='img/market-bag.png') }}" alt="" width="80px" height="80px"> </a>
+                            <span>Cantidad</span> <br>
+                            Total de productos
+                        </p>
+                    </body>
+                </html>
+            </div>
+            <div class="col cantidad">
+                <html>
+                    <head>
+                        <style>
+                            .cant-cont img {
+                                float: left;
+                                padding: 10px;
+                                box-shadow: 0px 0px 0px 3px rgba(16,51,115,1);
+                            }
+                            .cant-cont {
+                                text-align: center;
+                            }
+                            .cant-cont span {
+                                font-size: x-large;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <p class="cant-cont">
+                            <a href=""> <img src="{{ url_for('static', filename='img/proveedores-icon.png') }}" alt="" width="80px" height="80px"> </a>
+                            <span>Cantidad</span> <br>
+                            Proveedores
+                        </p>
+                    </body>
+                </html>
+            </div>
+            <div class="col cantidad">
+                <html>
+                    <head>
+                        <style>
+                            .cant-cont img {
+                                float: left;
+                                padding: 10px;
+                                box-shadow: 0px 0px 0px 3px rgba(16,51,115,1);
+                            }
+                            .cant-cont {
+                                text-align: center;
+                            }
+                            .cant-cont span {
+                                font-size: x-large;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <p class="cant-cont">
+                            <a href=""> <img src="{{ url_for('static', filename='img/usuarios-icon.png') }}" alt="" width="80px" height="80px"> </a>
+                            <span>Cantidad</span> <br>
+                            Usuarios
+                        </p>
+                    </body>
+                </html>
+            </div>
+        </div>
+    </div>
+    <div class="container pro-title">
+        <h3>Productos agregados recientemente</h3>
+    </div>
+    <div class="container mt-4 produc-agregados-recient">
+        <div class="row">
+            <div class="col cantidad">
+                <html>
+                    <head>
+                        <style>
+                            .cant-cont img {
+                                float: left;
+                                padding: 10px;
+                                box-shadow: 0px 0px 0px 3px rgba(16,51,115,1);
+                            }
+                            .cant-cont {
+                                text-align: center;
+                            }
+                            .cant-cont span {
+                                font-size: x-large;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <p class="cant-cont">
+                            <a href=""> <img src="{{ url_for('static', filename='img/photo.png') }}" alt="" width="80px" height="80px"> </a>
+                            <span>Nombre</span> <br>
+                            Cantidad
+                        </p>
+                    </body>
+                </html>
+            </div>
+            <div class="col cantidad">
+                <html>
+                    <head>
+                        <style>
+                            .cant-cont img {
+                                float: left;
+                                padding: 10px;
+                                box-shadow: 0px 0px 0px 3px rgba(16,51,115,1);
+                            }
+                            .cant-cont {
+                                text-align: center;
+                            }
+                            .cant-cont span {
+                                font-size: x-large;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <p class="cant-cont">
+                            <a href=""> <img src="{{ url_for('static', filename='img/photo.png') }}" alt="" width="80px" height="80px"> </a>
+                            <span>Nombre</span> <br>
+                            Cantidad
+                        </p>
+                    </body>
+                </html>
+            </div>
+            <div class="col cantidad">
+                <html>
+                    <head>
+                        <style>
+                            .cant-cont img {
+                                float: left;
+                                padding: 10px;
+                                box-shadow: 0px 0px 0px 3px rgba(16,51,115,1);
+                            }
+                            .cant-cont {
+                                text-align: center;
+                            }
+                            .cant-cont span {
+                                font-size: x-large;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <p class="cant-cont">
+                            <a href=""> <img src="{{ url_for('static', filename='img/photo.png') }}" alt="" width="80px" height="80px"> </a>
+                            <span>Nombre</span> <br>
+                            Cantidad
+                        </p>
+                    </body>
+                </html>
+            </div>
+            <div class="col cantidad">
+                <html>
+                    <head>
+                        <style>
+                            .cant-cont img {
+                                float: left;
+                                padding: 10px;
+                                box-shadow: 0px 0px 0px 3px rgba(16,51,115,1);
+                            }
+                            .cant-cont {
+                                text-align: center;
+                            }
+                            .cant-cont span {
+                                font-size: x-large;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <p class="cant-cont">
+                            <a href=""> <img src="{{ url_for('static', filename='img/photo.png') }}" alt="" width="80px" height="80px"> </a>
+                            <span>Nombre</span> <br>
+                            Cantidad
+                        </p>
+                    </body>
+                </html>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col graph-block">
+                <div class="title-b">
+                    <p>Detalles de Productos</p>
+                </div>
+                <div class="det-product">
+                    <br>
+                    <div class="chart-div">
+                    <html>
+                    <head>
+                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                        <script type="text/javascript">
+                        google.charts.load('current', {'packages':['corechart']});
+                        google.charts.setOnLoadCallback(drawChart);
+
+                        function drawChart() {
+
+                            var data = google.visualization.arrayToDataTable([
+                            ['Task', 'Hours per Day'],
+                            ['Articulos con existencia baja',     2],
+                            ['Articulos sin existencia',      5],
+                            ['Articulos con existencia requerida',  1],
+                            ]);
+
+                            var options = {
+                            title: ''
+                            };
+
+                            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                            chart.draw(data, options);
+                        }
+                        </script>
+                    </head>
+                    <body>
+                        <div id="piechart" class="chart"></div>
+                    </body>
+                    </html>
+                    </div>
+                </div>
+            </div>
+            <div class="col graph-block">
+                <div class="title-b">
+                    <p>Productos con mayor existencia</p>
+                </div>
+                <div>
+                        <br>
+                        <html>
+                        <head>
+                            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                            <script type="text/javascript">
+                            google.charts.load('current', {'packages':['bar']});
+                            google.charts.setOnLoadCallback(drawStuff);
+
+                            function drawStuff() {
+                                var data = new google.visualization.arrayToDataTable([
+                                ['Productos', 'Existencia'],
+                                ["Iphone 10", 15],
+                                ["Xiaomi Note 8", 20],
+                                ["Google Pixel 5", 8],
+                                ["Google Pixel 3", 13]
+                                ]);
+
+                                var options = {
+                                width: 250,
+                                legend: { position: 'none' },
+                                chart: {
+                                    title: '',
+                                    subtitle: '' },
+                                axes: {
+                                    x: {
+                                    0: { side: 'top', label: ''} // Top x-axis.
+                                    }
+                                },
+                                bar: { groupWidth: "90%" }
+                                };
+
+                                var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+                                // Convert the Classic options to Material options.
+                                chart.draw(data, google.charts.Bar.convertOptions(options));
+                            };
+                            </script>
+                        </head>
+                        <body>
+                            <div id="top_x_div" class="chart-2"></div>
+                        </body>
+                        </html>
+                </div>
+            </div>
+            <div class="col graph-block">
+                <div class="title-b">
+                    <p>Productos con mas proveedores</p>
+                </div>
+                <div>
+                    <br>
+                    <html>
+                    <head>
+                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                        <script type="text/javascript">
+                        google.charts.load('current', {'packages':['bar']});
+                        google.charts.setOnLoadCallback(drawStuff);
+
+                        function drawStuff() {
+                            var data = new google.visualization.arrayToDataTable([
+                            ['Productos', 'Proveedores'],
+                            ["Samsung", 3],
+                            ["Xiaomi Note 8", 4],
+                            ["Google Pixel 5", 2]
+                            ]);
+
+                            var options = {
+                            width: 250,
+                            legend: { position: 'none' },
+                            chart: {
+                                title: '',
+                                subtitle: '' },
+                            axes: {
+                                x: {
+                                0: { side: 'top', label: ''} // Top x-axis.
+                                }
+                            },
+                            bar: { groupWidth: "90%" }
+                            };
+
+                            var chart = new google.charts.Bar(document.getElementById('chart-3'));
+                            // Convert the Classic options to Material options.
+                            chart.draw(data, google.charts.Bar.convertOptions(options));
+                        };
+                        </script>
+                    </head>
+                    <body>
+                        <div id="chart-3" class="chart-2"></div>
+                    </body>
+                    </html>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.bienvenido {
+    color: #103373;
+    border: 2.5px solid #103373;
+    border-radius: 15px;
+}
+
+.cantidad {
+    color: #103373;
+    border: 2.5px dashed black;
+    border-radius: 6px;
+    margin-right: 10px;
+    padding: 0;
+}
+.pro-title {
+    color: #103373;
+    text-align: center;
+    margin-top: 30px;
+}
+.graph-block {
+    border: 2.5px solid black;
+    color: #103373;
+    padding: 0px;
+    margin-right: 10px;
+}
+.title-b {
+    color: #103373;
+    box-shadow: 0px 0px 0px 2px rgba(0,0,0,1);
+    background-color: #95BCF2;
+}
+
+.title-b p {
+    margin-left: 5px;
+}
+.chart {
+    margin-left: 0 auto;
+    width: auto;
+    height: auto;
+}
+.chart-2 {
+    margin-left: 50px;
+    width: auto;
+    height: auto;
+}
+</style>
+
+{% endblock %}
