@@ -82,7 +82,7 @@
                         <p for="">
                             Nombre:
                         </p>
-                        <input required type="text">
+                        <input required type="text" minlength="2">
                     </div>
                     <div>
                         <p for="">
@@ -136,8 +136,7 @@
                     {% endif %}
                 </form>
             </div>
-            {%endif%}
-            {%if submenu =='Información'%}
+            {%elif submenu =='Información'%}
             <div class="foto_producto">
                 <img src="{{ url_for('static', filename='img/photo.png') }}"/>
             </div>
