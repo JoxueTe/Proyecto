@@ -40,6 +40,10 @@ def login_vista():
 def recuperar_vista():
     return render_template('recuperar.html')
 
+@app.route("/dashboard")
+def dashboard_vista():
+    return render_template('dashboard.html')
+
 @app.route("/productos")
 def productos_vista():
     check = forms.FormCheckProduct()
