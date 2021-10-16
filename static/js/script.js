@@ -31,6 +31,7 @@ function validar_correo(){
         console.log("enviando")
         return false;
     }
+<<<<<<< HEAD
 }
 
 
@@ -80,3 +81,18 @@ btnCerrarPopup.addEventListener('click', function(e){
 //                             </div>
 //                         </div>
 //                         <script src="/static/js/script.js"></script>
+=======
+    
+}
+
+function send(){
+    var id=document.getElementById("id");
+    alert("entro")
+
+    if (id.value.length==0 || id.value.length<3){
+        alert("el codigo debe tener almenos 3 digitos");
+        passid.focus();
+        return false;
+    }
+}
+>>>>>>> origin
