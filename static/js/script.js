@@ -31,7 +31,6 @@ function validar_correo(){
         console.log("enviando")
         return false;
     }
-<<<<<<< HEAD
 }
 
 
@@ -39,6 +38,7 @@ function validar_correo(){
 //     prompt("Eliminar")
 // }
 
+//****************pop up */
 
 var btnAbrirPopup = document.getElementById('btn-eliminar'),
 	overlay = document.getElementById('overlay'),
@@ -56,35 +56,6 @@ btnCerrarPopup.addEventListener('click', function(e){
 	popup.classList.remove('active');
 });
 
-
-
-
-// <div id="borrar">
-//                             <!-- <form action="">
-//                                 <input type="button" id="btn_eliminar" value="" onclick="eliminar()">
-//                             </form>
-//                             <script src="/static/js/script.js"></script> -->
-//                             <button type="image" src={{ url_for('static', filename='img/delete.png') }} class="sobre" id="btn-abrir-popup"></button>
-//                             <div class="overlay" id="overlay">
-//                                 <div class="popup" id="popup">
-//                                     <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
-//                                     <h3>SUSCRIBETE</h3>
-//                                     <h4>y recibe un cupon de descuento.</h4>
-//                                     <form action="">
-//                                         <div class="contenedor-inputs">
-//                                             <input type="text" placeholder="Nombre">
-//                                             <input type="email" placeholder="Correo">
-//                                         </div>
-//                                         <input type="submit" class="btn-submit" value="Suscribirse">
-//                                     </form>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                         <script src="/static/js/script.js"></script>
-=======
-    
-}
-
 function send(){
     var id=document.getElementById("id");
     alert("entro")
@@ -95,4 +66,3 @@ function send(){
         return false;
     }
 }
->>>>>>> origin
