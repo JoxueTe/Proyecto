@@ -23,6 +23,15 @@ function validar_formulario(){
 
 }
 
+function Validar_contraseña(){
+    var contraseña=document.getElementById('contra')
+    if (contraseña.value.length==0 || contraseña.value.length<8 ){
+        alert("Ingrese una cotraseña");
+        passid.focus();
+        return false;
+    }
+}
+
 function validar_correo(){
     var email=document.getElementById("correo")
 
@@ -66,3 +75,24 @@ function send(){
         return false;
     }
 }
+
+function previsualizar(){
+    document.getElementById("seleccionArchivos").onchange = function(e) {
+        // Creamos el objeto de la clase FileReader
+        let reader = new FileReader();
+      
+        // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+        reader.readAsDataURL(e.target.files[0]);
+      
+        // Le decimos que cuando este listo ejecute el código interno
+        reader.onload = function(){
+          let preview = document.getElementById('preview'),
+                  image = document.createElement('img');
+      
+          image.src = reader.result;
+      
+          preview.innerHTML = '';
+          preview.append(image);
+        };
+    }
+  }

@@ -20,7 +20,13 @@
     </div> 
     <div class="buscar_agregar">
         <input type="search" placeholder="Busca por nombre o id">
-        <input type="button" value="+{{menu}}">
+        {%if menu=='Usuarios'%}
+        <a href="{{url_for('registrar_usuario_vista')}}"><input type="button" value="+{{menu}}"></a>
+        {%elif menu=='Proveedores'%}
+        <a href="{{url_for('registrar_proveedor_vista') }}"><input type="button" value="+{{menu}}"></a>
+        {%else%}
+        <a href="{{url_for('registrar_producto_vista') }}"><input type="button" value="+{{menu}}"></a>
+        {%endif%}
     </div>
     <div class="check">
         {% if menu=='Productos' %}
@@ -39,7 +45,7 @@
         <h2>{{menu}}</h2>
 
         <div class="mosaico">
-            {% for item in items %}
+            {% for usuario in usuarios %}
             <article class="tarjeta">
                 {% if menu=='Productos' %}
                 <a href="{{url_for('info_producto_vista') }}">
@@ -49,7 +55,7 @@
                 <a href="{{url_for('info_usuario_vista') }}">
                 {% endif %}
                 <figure id="imagen">
-                    <img src={{ url_for('static', filename=item.img) }} id="fotomosaico"/>
+                    <img src={{ url_for('static', filename=usuario.img[2]) }} id="fotomosaico"/>
                     <div class="franja">
                         <div id="editar">
                             {% if menu=='Productos' %}
@@ -84,11 +90,11 @@
                     </div>
                 </figure>
                 <div class="nombre-datos">
-                    <h5 style="color: Black" class="nombre">{{ item.name }}</h5>
+                    <h5 style="color: Black" class="nombre">{{ usuario.nombre }}</h5>
                     {% if menu=='Productos' %}
-                    <p style="color: Black" class="datos">{{ item.cantidad }}</p>
+                    <p style="color: Black" class="datos">{{ usuario.cantidad }}</p>
                     {% else %}
-                    <p style="color: Black" class="datos">{{ item.telefono }}</p>
+                    <p style="color: Black" class="datos">{{ usuario.telefono }}</p>
                     {% endif %}
                 </div>
                 </a>
