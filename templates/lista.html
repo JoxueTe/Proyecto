@@ -42,11 +42,11 @@
             {% for item in items %}
             <article class="tarjeta">
                 {% if menu=='Productos' %}
-                <a href="{{url_for('info_producto_vista') }}">
+                <a href="/productos/informacion?id={{item.id}}">
                 {% elif menu=='Proveedores' %}
-                <a href="{{url_for('info_proveedor_vista') }}">
+                <a href="/proveedores/informacion?id={{item.id}}">
                 {% else %}
-                <a href="{{url_for('info_usuario_vista') }}">
+                <a href="/usuarios/informacion?id={{item.id}}">
                 {% endif %}
                 <figure id="imagen">
                     <img src={{ url_for('static', filename=item.img) }} id="fotomosaico"/>
@@ -77,27 +77,27 @@
                 </div>
                 </a>
             </article>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="modal fade" id="eliminar">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h4 class="modal-title">¡¡¡ Confirmación de Eliminación !!!</h4>
-                    <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
-                </div>
-
-                <div class="modal-body">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore doloribus nobis architecto ea numquam officia ipsam accusantium illum, nisi inventore minima distinctio eius iure explicabo accusamus! Repellendus dolorum quia ipsam?</p>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Eliminar</button>
+            <div class="modal fade" id="eliminar">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+        
+                        <div class="modal-header">
+                            <h4 class="modal-title">¡¡¡ Confirmación de Eliminación !!!</h4>
+                            <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                        </div>
+        
+                        <div class="modal-body">
+                            <p>Estas seguro que deseas eliminar el {{menu}} {{ item.name }}</p>
+                        </div>
+        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary">Eliminar</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </section>

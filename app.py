@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import forms, os
 
 app = Flask(__name__)
@@ -79,6 +79,7 @@ def editar_producto_vista():
 
 @app.route("/productos/informacion")
 def info_producto_vista():
+    id=request.args.get('id')
     submenu="Información"
     menu="Productos"
     return render_template('formularioProducto.html', submenu=submenu, menu=menu, items=dic_productos)
@@ -97,6 +98,7 @@ def editar_proveedor_vista():
 
 @app.route("/proveedores/informacion")
 def info_proveedor_vista():
+    id=request.args.get('id')
     submenu="Información"
     menu="Proveedores"
     return render_template('formularioProUser.html', submenu=submenu, menu=menu, items=dic_proveedores)
@@ -117,6 +119,7 @@ def editar_usuario_vista():
 
 @app.route("/usuarios/informacion")
 def info_usuario_vista():
+    id=request.args.get('id')
     submenu="Información"
     menu="Usuarios"
     check = forms.FormListUser()
