@@ -93,11 +93,13 @@ def editar_usuario_vista(id):
     menu="Usuarios"
     return render_template('formularioProUser.html', submenu=submenu, menu=menu, usuario=usuario)
 
-@app.route("/usuarios/informacion")
-def info_usuario_vista():
+@app.route("/usuarios/informacion/<int:id>", methods=["GET"])
+def info_usuario_vista(id):
+    usuario=get_one_usuario(id)
+    check = forms.FormCheckProduct()
     submenu="Información"
     menu="Usuarios"
-    return render_template('formularioProUser.html', submenu=submenu, menu=menu)
+    return render_template('formularioProUser.html', submenu=submenu, menu=menu, check=check, usuario=usuario)
 
 @app.route('/create-Usuarios', methods=['POST'])
 def create_usuario():
@@ -132,7 +134,6 @@ def update_usuario():
     fregistro=request.form['fregistro']
     rol=request.form['rol']
     img=request.form['img']
-    print(id)
     password=password+usuario
     password=generate_password_hash(password)
     edit_usuario(id,nombre,usuario,password,email,img,fregistro,rol,telefono)
@@ -140,23 +141,10 @@ def update_usuario():
 
 @app.route('/delete-Usuarios/<id>', methods=['GET'])
 def delete_usuario(id):
-    dell_usuario(id)
-    # db.execute("INSERT INTO usuarios (identificacion,img, nombre, usuario, password , email, telefono, fregistro, rol ) "+
-    #             "VALUES(?,?,?,?,?,?,?,?,?)",(id,img,nombre,usuario,password,email,telefono,fregistro,rol))
-    # db.commit()  
-    # db.close()          
+    dell_usuario(id)      
     return redirect(url_for('usuarios_vista'))
 
-@app.route('/obtener-un-Usuarios', methods=['GET'])
-def obtener_un_usuario():
-    id=request.form['content']
-    get_one_usuario(id)   
-    return redirect(url_for('editar_usuario_vista'))
 
-@app.route('/obtener-all-Usuarios', methods=['GET'])
-def obtener_all_usuario():
-    usuarios=get_all_usuario()    
-    return (usuarios)
 
 if __name__ == '__main__':
     app.run(debug=True)

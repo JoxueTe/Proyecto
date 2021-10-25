@@ -48,7 +48,7 @@
                     {% elif menu=='Proveedores' %}
                     <a href="{{url_for('editar_proveedor_vista') }}">
                     {% else %}
-                    <a href="{{url_for('editar_usuario_vista') }}">
+                    <a href="{{url_for('editar_usuario_vista',id=usuario[0]) }}">
                     {% endif %}
                         <img src={{ url_for('static', filename='img/edit.png') }}  width="50" class="sobre"/>
                     </a>
@@ -84,7 +84,7 @@
                         <p>
                             ID:       
                         </p>
-                        <input value="" autofocus type="number">
+                        <input value="id" autofocus type="number">
                     </div>
                     {%endif%}
                     <div>
@@ -120,7 +120,7 @@
                         <p for="">
                             Teléfono de contacto:
                         </p>
-                        <input required type="number" min="3000000000" max="3600000000">
+                        <input required name="telefono" type="number" min="3000000000" max="3600000000">
                     </div>
                     {%endif%}
                     {%if menu=='Usuarios'%}
@@ -164,13 +164,7 @@
                         <p for="">
                             Descripción:
                         </p>
-                        <input name="descrpcion" type="text">
-                    </div>
-                    <div>
-                        <p for="">
-                            Proveedores:
-                        </p>
-                        <input name="nproveedores" type="text">
+                        <input name="descripcion" type="text">
                     </div>
                     {%endif%}
                     {% if menu=='Usuarios' %}
@@ -212,7 +206,7 @@
                         <p>
                             ID:       
                         </p>
-                        <input value="" autofocus type="number">
+                        <input value="id" autofocus type="number">
                     </div>
                     {%endif%}
                     <div>
@@ -248,7 +242,7 @@
                         <p for="">
                             Teléfono de contacto:
                         </p>
-                        <input required type="number" min="3000000000" max="3600000000">
+                        <input required name="telefono" type="number" min="3000000000" max="3600000000">
                     </div>
                     {%endif%}
                     {%if menu=='Usuarios'%}
@@ -295,11 +289,6 @@
                         <input name="descrpcion" type="text">
                     </div>
                     <div>
-                        <p for="">
-                            Proveedores:
-                        </p>
-                        <input name="nproveedores" type="text">
-                    </div>
                     {%endif%}
                     {% if menu=='Usuarios' %}
                     <div>
@@ -327,70 +316,119 @@
             </div>
             {%elif submenu =='Información'%}
             <div class="foto_producto">
-                <img src="{{ url_for('static', filename='img/photo.png') }}"/>
+                <img src='/static/img/{{usuario[5]}}'/>
             </div>
             <div class="formulario">
                 <form action="" method="GET">
+                    {%if menu=='Usuarios'%}
                     <div>
-                        <p for="">
+                        <p>
+                            Identificación:       
+                        </p>
+                        <input readonly value="{{usuario[0]}}" maxlength="10" minlength="7" name="content" type="number">
+                    </div>
+                    {%else%}
+                    <div>
+                        <p>
                             ID:       
                         </p>
-                        <input readonly  type="number" value="{{usuario[0]}}">
+                        <input readonly value="id" autofocus type="number">
                     </div>
+                    {%endif%}
                     <div>
                         <p for="">
                             Nombre:
                         </p>
-                        <input readonly type="text">
+                        <input readonly value="{{usuario[1]}}" name="nombre" type="text" minlength="2">
                     </div>
+                    {%if menu=='Usuarios'%}
+                    <div>
+                        <p for="">
+                            Usuario:
+                        </p>
+                        <input readonly value="{{usuario[2]}}" name="usuario" id="contra" type="text" onsubmit="validar_contraseña()">
+                    </div>
+                    {%else%}
                     <div>
                         <p for="">
                             e-mail:
                         </p>
-                        <input readonly type="email">
+                        <input readonly name="email" type="email">
                     </div>
+                    {%endif%}
+                    {%if menu=='Usuarios'%}
+                    <div>
+                        <p for="">
+                            Password:
+                        </p>
+                        <input readonly value="{{usuario[3]}}" name="password" type="password">
+                    </div>
+                    {%else%}
                     <div>
                         <p for="">
                             Teléfono de contacto:
                         </p>
-                        <input readonly type="number" min="3000000000" max="3600000000">
+                        <input  readonly name="telefono" type="number" min="3000000000" max="3600000000">
                     </div>
+                    {%endif%}
+                    {%if menu=='Usuarios'%}
+                    <div>
+                        <p for="">
+                            E-mail:
+                        </p>
+                        <input readonly value="{{usuario[4]}}" name="email" type="email">
+                    </div>
+                    {%else%}
                     <div>
                         <p for="">
                             Ciudad:
                         </p>
-                        <input readonly type="text">
+                        <input readonly name="ciudad" type="text">
                     </div>
+                    {%endif%}
+                    {%if menu=='Usuarios'%}
+                    <div>
+                        <p for="">
+                            Teléfono de contacto:
+                        </p>
+                        <input readonly value="{{usuario[8]}}" name="telefono" type="number" min="3000000000" max="3600000000">
+                    </div>
+                    {%else%}
                     <div>
                         <p for="">
                             Dirección:
                         </p>
-                        <input readonly type="text" min="">
+                        <input readonly name="direccion" type="text" min="">
                     </div>
+                    {%endif%}
                     <div>
                         <p for="">
                             Fecha de registro:
                         </p>
-                        <input readonly type="date" placeholder="dd/mm/aaaa" >
+                        <input readonly value="{{usuario[6]}}" type="date" name="fregistro" placeholder="dd/mm/aaaa" required>
                     </div>
+                    {%if menu!='Usuarios'%}
                     <div>
                         <p for="">
                             Descripción:
                         </p>
-                        <input readonly type="text">
+                        <input readonly name="descrpcion" type="text">
                     </div>
                     <div>
-                        <p for="">
-                            Proveedores:
-                        </p>
-                        <input readonly type="text">
-                    </div>
+                    {%endif%}
                     {% if menu=='Usuarios' %}
                     <div>
                         <p for="">
                             Rol:       
                         </p>
-                        {{ check.rol }}
+                        <select name="rol">
+                            {%if usuario[7]=='1'%}
+                            <option value="1">Usuario final</option>
+                            {%elif usuario[7]=='2'%}
+                            <option value="2">Administrador</option>
+                            {%else%}
+                            <option value="3">Super administrador</option>
+                            {%endif%}
                     </div>
                     {% endif %}
                 </form>
