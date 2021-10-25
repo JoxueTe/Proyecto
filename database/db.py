@@ -17,8 +17,7 @@ def get_db():
     '''
     try:
         if 'db' not in g:
-            g.db = sqlite3.connect('database/usuarios.db')
-        
+            g.db = sqlite3.connect('database/inventario.db')
         return g.db
     except Error:
         print("Error en la base de datos: " + Error)

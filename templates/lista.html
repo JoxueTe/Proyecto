@@ -55,7 +55,7 @@
                 <a href="{{url_for('info_usuario_vista') }}">
                 {% endif %}
                 <figure id="imagen">
-                    <img src={{ url_for('static', filename=usuario.img[2]) }} id="fotomosaico"/>
+                    <img src="/static/img/{{usuario[5]}}" id="fotomosaico"/>
                     <div class="franja">
                         <div id="editar">
                             {% if menu=='Productos' %}
@@ -63,7 +63,7 @@
                             {% elif menu=='Proveedores' %}
                             <a href="{{url_for('editar_proveedor_vista') }}">
                             {% else %}
-                            <a href="{{url_for('editar_usuario_vista') }}">
+                            <a href="{{url_for('editar_usuario_vista',id=usuario[0])}}">
                             {% endif %}
                                 <img src={{ url_for('static', filename='img/edit.png') }} class="sobre"/>
                             </a>
@@ -79,7 +79,7 @@
                                     <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
                                     <h3>¡¡¡ Eliminación de {{menu}} !!!</h3>
                                     <h4>¿Estás seguro que deseas eliminar el {{menu}}?</h4>
-                                    <form action="">
+                                    <form action="/delete-{{menu}}/{{usuario[0]}}" method="GET">
                                         <input type="submit" class="btn-submit" value="Eliminar">
                                     </form>
                                 </div>
@@ -90,11 +90,11 @@
                     </div>
                 </figure>
                 <div class="nombre-datos">
-                    <h5 style="color: Black" class="nombre">{{ usuario.nombre }}</h5>
+                    <h5 style="color: Black" class="nombre">{{ usuario[1] }}</h5>
                     {% if menu=='Productos' %}
                     <p style="color: Black" class="datos">{{ usuario.cantidad }}</p>
                     {% else %}
-                    <p style="color: Black" class="datos">{{ usuario.telefono }}</p>
+                    <p style="color: Black" class="datos">{{ usuario[8] }}</p>
                     {% endif %}
                 </div>
                 </a>

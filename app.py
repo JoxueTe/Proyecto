@@ -1,12 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for
+from database.database_controller import *
+from database.db import get_db
 from flask.helpers import url_for
-from database.db import get_db 
 from werkzeug.security import check_password_hash, generate_password_hash
+import forms, os
 
- 
+
+
 app = Flask(__name__)
-SECRET_KEY = 'misiontic'
-    
+SECRET_KEY = os.urandom(32)
+app.config['SECRET_KEY'] = SECRET_KEY
+# SECRET_KEY = 'misiontic'
+
 @app.route("/")
 @app.route("/login")
 def login_vista():
@@ -23,8 +28,9 @@ def dashboard_vista():
 
 @app.route("/productos")
 def productos_vista():
+    check = forms.FormCheckProduct()
     menu="Productos"
-    return render_template('lista.html', menu=menu)
+    return render_template('lista.html', menu=menu, check=check)
 
 @app.route("/proveedores")
 def proveedores_vista():
@@ -33,8 +39,10 @@ def proveedores_vista():
 
 @app.route("/usuarios")
 def usuarios_vista():
+    usuarios=get_all_usuario()
+    print(usuarios)
     menu="Usuarios"
-    return render_template('lista.html', menu=menu)
+    return render_template('lista.html', menu=menu, usuarios=usuarios)
 
 @app.route("/productos/registrar")
 def registrar_producto_vista():
@@ -76,11 +84,23 @@ def info_proveedor_vista():
 def registrar_usuario_vista():
     submenu="Registrar"
     menu="Usuarios"
-    # check = forms.FormListUser()
+    return render_template('formularioProUser.html', submenu=submenu, menu=menu)
+
+@app.route("/usuarios/editar/<int:id>", methods=["GET"])
+def editar_usuario_vista(id):
+    usuario=get_one_usuario(id)
+    submenu="Editar"
+    menu="Usuarios"
+    return render_template('formularioProUser.html', submenu=submenu, menu=menu, usuario=usuario)
+
+@app.route("/usuarios/informacion")
+def info_usuario_vista():
+    submenu="Información"
+    menu="Usuarios"
     return render_template('formularioProUser.html', submenu=submenu, menu=menu)
 
 @app.route('/create-Usuarios', methods=['POST'])
-def create():
+def create_usuario():
     id=request.form['content']
     nombre=request.form['nombre']
     usuario=request.form['usuario']
@@ -94,26 +114,49 @@ def create():
     db=get_db()
     password=password+usuario
     password=generate_password_hash(password)
-    db.execute("INSERT INTO usuarios (identificacion,img, nombre, usuario, password , email, telefono, fregistro, rol ) "+
-                "VALUES(?,?,?,?,?,?,?,?,?)",(id,img,nombre,usuario,password,email,telefono,fregistro,rol))
-    db.commit()  
-    db.close()          
+    # insert_usuario(id,nombre,usuario,password,email,img,fregistro,rol,telefono)
+    db.execute("INSERT INTO usuario (identif_usua,nom_usua, usuari_usua, passw_usua, email_usua, img_usua, fecha_ingreso_usua, rol_usua, tel_usua) "+
+                "VALUES(?,?,?,?,?,?,?,?,?)",(id,nombre,usuario,password,email,img,fregistro,rol,telefono))
+    db.commit()
+    db.close()
     return redirect(url_for('registrar_usuario_vista'))
 
+@app.route('/update-Usuarios', methods=['POST'])
+def update_usuario():
+    id=request.form['content']
+    nombre=request.form['nombre']
+    usuario=request.form['usuario']
+    email=request.form['email']
+    password=request.form['password']
+    telefono=request.form['telefono']
+    fregistro=request.form['fregistro']
+    rol=request.form['rol']
+    img=request.form['img']
+    print(id)
+    password=password+usuario
+    password=generate_password_hash(password)
+    edit_usuario(id,nombre,usuario,password,email,img,fregistro,rol,telefono)
+    return redirect(url_for('editar_usuario_vista',id=id))
 
-@app.route("/usuarios/editar")
-def editar_usuario_vista():
-    submenu="Editar"
-    menu="Usuarios"
-    # check = forms.FormListUser()
-    return render_template('formularioProUser.html', submenu=submenu, menu=menu)
+@app.route('/delete-Usuarios/<id>', methods=['GET'])
+def delete_usuario(id):
+    dell_usuario(id)
+    # db.execute("INSERT INTO usuarios (identificacion,img, nombre, usuario, password , email, telefono, fregistro, rol ) "+
+    #             "VALUES(?,?,?,?,?,?,?,?,?)",(id,img,nombre,usuario,password,email,telefono,fregistro,rol))
+    # db.commit()  
+    # db.close()          
+    return redirect(url_for('usuarios_vista'))
 
-@app.route("/usuarios/informacion")
-def info_usuario_vista():
-    submenu="Información"
-    menu="Usuarios"
-    # check = forms.FormListUser()
-    return render_template('formularioProUser.html', submenu=submenu, menu=menu)
+@app.route('/obtener-un-Usuarios', methods=['GET'])
+def obtener_un_usuario():
+    id=request.form['content']
+    get_one_usuario(id)   
+    return redirect(url_for('editar_usuario_vista'))
+
+@app.route('/obtener-all-Usuarios', methods=['GET'])
+def obtener_all_usuario():
+    usuarios=get_all_usuario()    
+    return (usuarios)
 
 if __name__ == '__main__':
     app.run(debug=True)
