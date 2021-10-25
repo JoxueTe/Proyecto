@@ -12,6 +12,7 @@ SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 # SECRET_KEY = 'misiontic'
 
+
 @app.route("/")
 @app.route("/login")
 def login_vista():
@@ -99,7 +100,12 @@ def info_usuario_vista(id):
     check = forms.FormCheckProduct()
     submenu="Información"
     menu="Usuarios"
+<<<<<<< HEAD
     return render_template('formularioProUser.html', submenu=submenu, menu=menu, check=check, usuario=usuario)
+=======
+    check = forms.FormListUser()
+    return render_template('formularioProUser.html', submenu=submenu, menu=menu, check=check)
+>>>>>>> 62179fceb7f4eca16c5853568287406c02cb418b
 
 @app.route('/create-Usuarios', methods=['POST'])
 def create_usuario():
@@ -148,3 +154,4 @@ def delete_usuario(id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
