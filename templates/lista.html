@@ -63,23 +63,7 @@
                             </a>
                         </div>
                         <div id="borrar">
-                            <!-- <form action="">
-                                <input type="button" id="btn_eliminar" value="" onclick="eliminar()">
-                            </form>
-                            <script src="/static/js/script.js"></script> -->
-                            <input type="image" src={{ url_for('static', filename='img/delete.png') }} class="sobre" id="btn-eliminar"/>
-                            <div class="overlay" id="overlay">
-                                <div class="popup" id="popup">
-                                    <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
-                                    <h3>¡¡¡ Eliminación de {{menu}} !!!</h3>
-                                    <h4>¿Estás seguro que deseas eliminar el {{menu}}?</h4>
-                                    <form action="">
-                                        <input type="submit" class="btn-submit" value="Eliminar">
-                                    </form>
-                                </div>
-                            </div>
-                            <script src="/static/js/script.js"></script>
-
+                            <a href="#eliminar" data-toggle="modal"><input type="image" src={{ url_for('static', filename='img/delete.png') }} class="sobre" id="btn-eliminar"/></a>
                         </div>
                     </div>
                 </figure>
@@ -94,6 +78,26 @@
                 </a>
             </article>
             {% endfor %}
+        </div>
+    </div>
+    <div class="modal fade" id="eliminar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">¡¡¡ Confirmación de Eliminación !!!</h4>
+                    <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                </div>
+
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore doloribus nobis architecto ea numquam officia ipsam accusantium illum, nisi inventore minima distinctio eius iure explicabo accusamus! Repellendus dolorum quia ipsam?</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Eliminar</button>
+                </div>
+            </div>
         </div>
     </div>
 </section>

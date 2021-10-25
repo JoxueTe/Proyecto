@@ -29,6 +29,11 @@ dic_usuarios= [
     {'img': 'img/logo.png', 'id': 3, 'name': 'Juan ', 'telefono': '3208954123', 'price': 500},
     {'img': 'img/logo.png', 'id': 4, 'name': 'Phone', 'telefono': '3502157852', 'price': 500}
 ]
+
+@app.route("/db")
+def hello():
+    conexion = db.conexion_bd ()
+    return "Hello world"
     
 @app.route("/")
 @app.route("/login")
@@ -116,3 +121,10 @@ def info_usuario_vista():
     menu="Usuarios"
     check = forms.FormListUser()
     return render_template('formularioProUser.html', submenu=submenu, menu=menu, check=check, items=dic_usuarios)
+
+@app.route("/prueba")
+def prueba_vista():
+    submenu="Información"
+    menu="Usuarios"
+    check = forms.FormListUser()
+    return render_template('form_prueba.html', submenu=submenu, menu=menu, check=check, items=dic_usuarios)

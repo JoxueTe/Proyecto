@@ -38,33 +38,3 @@ col h4, p {
     margin-bottom: 0px;
     text-align: left;
 }
-
-footer{
-    margin-top: 30px;
-}
-/* Dropdown para Sesión y Perfil */
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: relative;
-    background-color: #f9f9f9;
-    width: 100%;
-    overflow:auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  
-  .desc {
-    padding: 15px;
-    text-align: center;
-  }

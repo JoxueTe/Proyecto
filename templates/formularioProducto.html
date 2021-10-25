@@ -51,9 +51,11 @@
                     </a>
                 </div>  
                 <div class="col">
-                    <input type="reset" form="formulario_producto" class="btn btn-outline-danger" id="btn_delete" value="">
+                    <a href="#eliminar" data-toggle="modal">
+                       <input type="reset" form="formulario_producto" class="btn btn-outline-danger" id="btn_delete" value="">
+                    </a>
                 </div>
-                 {% endif %}
+                {% endif %}
             </div>
         </div>
         <div class="foto-formulario">
@@ -200,6 +202,26 @@
                 </form>
             </div>
             {%endif%}
+        </div>
+    </div>
+    <div class="modal fade" id="eliminar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">¡¡¡ Confirmación de Eliminación !!!</h4>
+                    <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                </div>
+
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore doloribus nobis architecto ea numquam officia ipsam accusantium illum, nisi inventore minima distinctio eius iure explicabo accusamus! Repellendus dolorum quia ipsam?</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Eliminar</button>
+                </div>
+            </div>
         </div>
     </div>
 </section>
