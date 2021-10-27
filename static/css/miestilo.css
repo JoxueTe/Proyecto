@@ -39,7 +39,7 @@ section{
     text-align: center;
 }
 
-.solicitar input[type="text"]{
+#nombre{
     margin-top: 50px;
 }
 
@@ -184,4 +184,23 @@ p.copy{
     border-radius: 10px;
     border-color: #3c78f2;
     box-shadow: 0px 2px 20px 0px rgba(0,0,0,0.2);
+}
+
+.pass {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+    
+#vision {
+    margin-top: 27px;
+    width: 25px;
+    margin-bottom: 2px;
+    position: absolute;
+    z-index: 1;
+    right: 19%;
+}
+
+#vision:hover {
+    cursor: pointer;
 }

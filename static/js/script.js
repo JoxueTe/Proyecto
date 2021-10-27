@@ -72,4 +72,21 @@ function previsualizar(){
           preview.append(image);
         };
     }
-  }
+}
+
+
+document.getElementById("vision").onmouseover = function() {mouseOver()};
+document.getElementById("vision").onmouseout = function() {mouseOver()};
+
+function mouseOver() {
+    document.getElementById("vision");
+        let input_contrasena = document.getElementById('password')
+        let tipo_input = input_contrasena.getAttribute('type')
+        if (tipo_input == 'password') {
+            input_contrasena.setAttribute('type', 'text')
+            document.getElementById("vision").setAttribute('src', '/static/img/hidden.png')
+        } else {
+            input_contrasena.setAttribute('type', 'password')
+            document.getElementById("vision").setAttribute('src', '/static/img/view.png')
+        }
+}

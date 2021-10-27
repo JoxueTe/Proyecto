@@ -116,7 +116,8 @@
                         <p for="">
                             Password:
                         </p>
-                        <input required name="password" type="password">
+                        <input required name="password" type="password" id="password">
+                        <img src="{{url_for('static', filename='img/view.png') }}" alt="Mostrar contraseña" id="vision"/>
                     </div>
                     {%else%}
                     <div>
@@ -240,11 +241,14 @@
                     </div>
                     {%endif%}
                     {%if menu=='Usuarios'%}
-                    <div>
+                    <div class="contrasena">
                         <p for="">
-                            Password:
+                            Contraseña:
                         </p>
-                        <input value="{{usuario[3]}}" name="password" type="password">
+                        <input value="{{usuario[3]}}" name="password" type="password" id="password">
+                        <span id="mostrar">
+                            <img src="{{url_for('static', filename='img/view.png') }}" alt="Mostrar contraseña" id="vision"/>    
+                        </span>
                     </div>
                     {%else%}
                     <div>
@@ -410,4 +414,5 @@
         </div>
     </div>
 </section>
+<script src="{{url_for('static', filename='js/script.js')}}"></script>
 {% endblock %}

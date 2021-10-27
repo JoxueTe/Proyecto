@@ -103,3 +103,19 @@
     border-radius: 30%;
     border-color: transparent;
 }
+
+.contrasena{
+    position: absolute;
+}
+
+#vision {
+    width: 25px;
+    margin-bottom: 2px;
+    position: relative;
+    z-index: 1;
+    right: 40px;
+}
+
+#vision:hover {
+    cursor: pointer;
+}
