@@ -45,45 +45,45 @@
         <h2>{{menu}}</h2>
 
         <div class="mosaico">
-            {% for usuario in usuarios %}
+            {% for tabla in tablas %}
             <article class="tarjeta">
                 {% if menu=='Productos' %}
-                <a href="{{url_for('info_usuario_vista',id=usuario[0])}}">
+                <a href="{{url_for('info_productos_vista',id=tabla[0])}}">
                 {% elif menu=='Proveedores' %}
-                <a href="{{url_for('info_proveedor_vista',id=usuario[0])}}">
+                <a href="{{url_for('info_proveedor_vista',id=tabla[0])}}">
                 {% else %}
-                <a href="{{url_for('info_producto_vista',id=usuario[0])}}">
+                <a href="{{url_for('info_usuario_vista',id=tabla[0]) }}">
                 {% endif %}
                 <figure id="imagen">
-                    <img src="/static/img/{{usuario[5]}}" id="fotomosaico"/>
+                    <img src="/static/img/{{tabla[5]}}" id="fotomosaico"/>
                     <div class="franja">
                         <div id="editar">
                             {% if menu=='Productos' %}
                             <a href="{{url_for('editar_producto_vista') }}">
                             {% elif menu=='Proveedores' %}
-                            <a href="{{url_for('editar_proveedor_vista') }}">
+                            <a href="{{url_for('editar_proveedor_vista',id=tabla[0])}}">
                             {% else %}
-                            <a href="{{url_for('editar_usuario_vista',id=usuario[0])}}">
+                            <a href="{{url_for('editar_usuario_vista',id=tabla[0])}}">
                             {% endif %}
                                 <img src={{ url_for('static', filename='img/edit.png') }} class="sobre"/>
                             </a>
                         </div>
                         <div id="borrar">
-                            <a href="#eliminar{{usuario[0]}}" data-toggle="modal"><input type="image" src={{ url_for('static', filename='img/delete.png') }} class="sobre" id="btn-eliminar"/></a>
+                            <a href="#eliminar{{tabla[0]}}" data-toggle="modal"><input type="image" src={{ url_for('static', filename='img/delete.png') }} class="sobre" id="btn-eliminar"/></a>
                         </div>
                     </div>
                 </figure>
                 <div class="nombre-datos">
-                    <h5 style="color: Black" class="nombre">{{ usuario[1] }}</h5>
+                    <h5 style="color: Black" class="nombre">{{ tabla[1] }}</h5>
                     {% if menu=='Productos' %}
                     <p style="color: Black" class="datos">{{ usuario.cantidad }}</p>
                     {% else %}
-                    <p style="color: Black" class="datos">{{ usuario[8] }}</p>
+                    <p style="color: Black" class="datos">{{ tabla[8] }}</p>
                     {% endif %}
                 </div>
                 </a>
             </article>
-            <div class="modal fade" id="eliminar{{usuario[0]}}">
+            <div class="modal fade" id="eliminar{{tabla[0]}}">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -91,11 +91,15 @@
                             <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
                         </div>
                         <div class="modal-body">
-                            <p>Estas seguro que deseas eliminar el {{menu}} {{usuario[1]}}</p>
+                            <p>Estas seguro que deseas eliminar el {{menu}} {{tabla[1]}}</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            <a href="{{url_for('delete_usuario',id=usuario[0])}}"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                            {%if menu=='Usuarios' %}
+                            <a href="{{url_for('delete_usuario',id=tabla[0])}}"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                            {%elif menu=='Proveedores'%}
+                            <a href="{{url_for('delete_proveedor',id=tabla[0])}}"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                            {%endif%}
                         </div>
                     </div>
                 </div>

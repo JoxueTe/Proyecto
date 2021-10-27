@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
 from database.database_controller import *
-from database.db import get_db
 from flask.helpers import url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 import forms, os
@@ -12,38 +11,28 @@ SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 # SECRET_KEY = 'misiontic'
 
-
+#--------------------------------< RUTA PRINCIPAL DE LOGUEO >-----------------------------
 @app.route("/")
 @app.route("/login")
 def login_vista():
     return render_template('login.html')
 
-
+#---------------------------------< RUTA DE RECUPERAR CONTRASEÑA >----------------------------
 @app.route("/recuperar")
 def recuperar_vista():
     return render_template('recuperar.html')
 
+#-------------------------------< VISTA DEL DASHBOARD >--------------------------------------
 @app.route("/dashboard")
 def dashboard_vista():
     return render_template('dashboard.html')
 
+#-----------------------------------< RUTAS DE PRODUCTOS >----------------------------------------------
 @app.route("/productos")
 def productos_vista():
     check = forms.FormCheckProduct()
     menu="Productos"
     return render_template('lista.html', menu=menu, check=check)
-
-@app.route("/proveedores")
-def proveedores_vista():
-    menu="Proveedores"
-    return render_template('lista.html', menu=menu)
-
-@app.route("/usuarios")
-def usuarios_vista():
-    usuarios=get_all_usuario()
-    print(usuarios)
-    menu="Usuarios"
-    return render_template('lista.html', menu=menu, usuarios=usuarios)
 
 @app.route("/productos/registrar")
 def registrar_producto_vista():
@@ -63,23 +52,88 @@ def info_producto_vista():
     menu="Productos"
     return render_template('formularioProducto.html', submenu=submenu, menu=menu)
 
-@app.route("/proveedores/registrar")
+@app.route('/create-Productos', methods=['POST'])
+def create_productos():
+    id=request.form['id']
+    nombre=request.form['nombre']
+    direccion=request.form['direccion']
+    email=request.form['email']
+    img=request.form['img']
+    fregistro=request.form['fregistro']
+    ciudad=request.form['ciudad']
+    telefono=request.form['telefono']
+    descripcion=request.form['descripcion']
+    insert_proveedor(id,nombre,direccion,email,img,fregistro,ciudad,telefono,descripcion)
+    return redirect(url_for('registrar_proveedor_vista'))
+
+#----------------------------------Proveedor--------------------------------------------
+@app.route("/proveedores")
+def proveedores_vista():
+    proveedores=get_all_proveedor()
+    menu="Proveedores"
+    return render_template('lista.html', menu=menu, tablas=proveedores)
+
+@app.route("/proveedores/registrar")    
 def registrar_proveedor_vista():
     submenu="Registrar"
     menu="Proveedores"
     return render_template('formularioProUser.html', submenu=submenu, menu=menu)
 
-@app.route("/proveedores/editar")
-def editar_proveedor_vista():
+@app.route("/proveedores/editar/<int:id>")
+def editar_proveedor_vista(id):
+    proveedor=get_one_proveedor(id)
     submenu="Editar"
     menu="Proveedores"
-    return render_template('formularioProUser.html', submenu=submenu, menu=menu)
+    return render_template('formularioProUser.html', submenu=submenu, menu=menu, tabla=proveedor)
 
-@app.route("/proveedores/informacion")
-def info_proveedor_vista():
+@app.route("/proveedores/informacion/<int:id>", methods=["GET"])
+def info_proveedor_vista(id):
+    proveedor=get_one_proveedor(id)
     submenu="Información"
     menu="Proveedores"
-    return render_template('formularioProUser.html', submenu=submenu, menu=menu)
+    return render_template('formularioProUser.html', submenu=submenu, menu=menu, tabla=proveedor)
+
+@app.route('/create-Proveedores', methods=['POST'])
+def create_proveedor():
+    id=request.form['id']
+    nombre=request.form['nombre']
+    direccion=request.form['direccion']
+    email=request.form['email']
+    img=request.form['img']
+    fregistro=request.form['fregistro']
+    ciudad=request.form['ciudad']
+    telefono=request.form['telefono']
+    descripcion=request.form['descripcion']
+    insert_proveedor(id,nombre,direccion,email,img,fregistro,ciudad,telefono,descripcion)
+    return redirect(url_for('registrar_proveedor_vista'))
+
+
+@app.route('/update-Proveedores', methods=['POST'])
+def update_proveedor():
+    id=request.form['id']
+    nombre=request.form['nombre']
+    direccion=request.form['direccion']
+    email=request.form['email']
+    img=request.form['img']
+    fregistro=request.form['fregistro']
+    ciudad=request.form['ciudad']
+    telefono=request.form['telefono']
+    descripcion=request.form['descripcion']
+    edit_proveedor(id,nombre,direccion,email,img,fregistro,ciudad,telefono,descripcion)
+    return redirect(url_for('registrar_proveedor_vista'))
+
+@app.route('/delete-Proveedores/<id>', methods=['GET'])
+def delete_proveedor(id):
+    dell_proveedor(id)      
+    return redirect(url_for('proveedores_vista'))
+
+
+#---------------------------------------Usuario--------------------------------------------
+@app.route("/usuarios")
+def usuarios_vista():
+    usuarios=get_all_usuario()
+    menu="Usuarios"
+    return render_template('lista.html', menu=menu, tablas=usuarios)
 
 @app.route("/usuarios/registrar")
 def registrar_usuario_vista():
@@ -92,14 +146,14 @@ def editar_usuario_vista(id):
     usuario=get_one_usuario(id)
     submenu="Editar"
     menu="Usuarios"
-    return render_template('formularioProUser.html', submenu=submenu, menu=menu, usuario=usuario)
+    return render_template('formularioProUser.html', submenu=submenu, menu=menu, tabla=usuario)
 
-@app.route("/usuarios/informacion")
-def info_usuario_vista():
+@app.route("/usuarios/informacion/<int:id>", methods=["GET"])
+def info_usuario_vista(id):
+    usuario=get_one_usuario(id)
     submenu="Información"
     menu="Usuarios"
-    check = forms.FormListUser()
-    return render_template('formularioProUser.html', submenu=submenu, menu=menu, check=check)
+    return render_template('formularioProUser.html', submenu=submenu, menu=menu, tabla=usuario)
 
 @app.route('/create-Usuarios', methods=['POST'])
 def create_usuario():
@@ -112,15 +166,9 @@ def create_usuario():
     fregistro=request.form['fregistro']
     rol=request.form['rol']
     img=request.form['img']
-    print('aqui se imprime la variabe'+img)
-    db=get_db()
     password=password+usuario
     password=generate_password_hash(password)
-    # insert_usuario(id,nombre,usuario,password,email,img,fregistro,rol,telefono)
-    db.execute("INSERT INTO usuario (identif_usua,nom_usua, usuari_usua, passw_usua, email_usua, img_usua, fecha_ingreso_usua, rol_usua, tel_usua) "+
-                "VALUES(?,?,?,?,?,?,?,?,?)",(id,nombre,usuario,password,email,img,fregistro,rol,telefono))
-    db.commit()
-    db.close()
+    insert_usuario(id,nombre,usuario,password,email,img,fregistro,rol,telefono)
     return redirect(url_for('registrar_usuario_vista'))
 
 @app.route('/update-Usuarios', methods=['POST'])
@@ -134,7 +182,6 @@ def update_usuario():
     fregistro=request.form['fregistro']
     rol=request.form['rol']
     img=request.form['img']
-    print(id)
     password=password+usuario
     password=generate_password_hash(password)
     edit_usuario(id,nombre,usuario,password,email,img,fregistro,rol,telefono)
@@ -142,24 +189,10 @@ def update_usuario():
 
 @app.route('/delete-Usuarios/<id>', methods=['GET'])
 def delete_usuario(id):
-    dell_usuario(id)
-    # db.execute("INSERT INTO usuarios (identificacion,img, nombre, usuario, password , email, telefono, fregistro, rol ) "+
-    #             "VALUES(?,?,?,?,?,?,?,?,?)",(id,img,nombre,usuario,password,email,telefono,fregistro,rol))
-    # db.commit()  
-    # db.close()          
+    dell_usuario(id)      
     return redirect(url_for('usuarios_vista'))
 
-@app.route('/obtener-un-Usuarios', methods=['GET'])
-def obtener_un_usuario():
-    id=request.form['content']
-    get_one_usuario(id)   
-    return redirect(url_for('editar_usuario_vista'))
-
-@app.route('/obtener-all-Usuarios', methods=['GET'])
-def obtener_all_usuario():
-    usuarios=get_all_usuario()    
-    return (usuarios)
-
+#---------------------------< ACTUAIZACION DE CAMBIOS >--------------------------------------
 if __name__ == '__main__':
     app.run(debug=True)
 
