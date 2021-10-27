@@ -319,6 +319,27 @@
                 </form>
             </div>
             {%elif submenu =='Información'%}
+            <div class="modal fade" id="eliminar{{tabla[0]}}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">¡¡¡ Confirmación de Eliminación !!!</h4>
+                            <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Estas seguro que deseas eliminar el {{menu}} {{tabla[1]}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            {%if menu=='Usuarios' %}
+                            <a href="{{url_for('delete_usuario',id=tabla[0])}}"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                            {%elif menu=='Proveedores'%}
+                            <a href="{{url_for('delete_proveedor',id=tabla[0])}}"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                            {%endif%}
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="foto_producto">
                 <img src='/static/img/{{tabla[5]}}'/>
             </div>
@@ -436,27 +457,6 @@
                     </div>
                     {% endif %}
                 </form>
-            </div>
-            <div class="modal fade" id="eliminar{{tabla[0]}}">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">¡¡¡ Confirmación de Eliminación !!!</h4>
-                            <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Estas seguro que deseas eliminar el {{menu}} {{tabla[1]}}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                            {%if menu=='Usuarios' %}
-                            <a href="{{url_for('delete_usuario',id=tabla[0])}}"><button type="button" class="btn btn-primary">Eliminar</button></a>
-                            {%elif menu=='Proveedores'%}
-                            <a href="{{url_for('delete_proveedor',id=tabla[0])}}"><button type="button" class="btn btn-primary">Eliminar</button></a>
-                            {%endif%}
-                        </div>
-                    </div>
-                </div>
             </div>
             {%endif%}
         </div>
