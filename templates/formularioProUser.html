@@ -46,18 +46,15 @@
                     {% if menu=='Productos' %}
                     <a href="{{url_for('editar_producto_vista') }}">
                     {% elif menu=='Proveedores' %}
-                    <a href="{{url_for('editar_proveedor_vista') }}">
+                    <a href="{{url_for('editar_proveedor_vista',id=tabla[0]) }}">
                     {% else %}
-                    <a href="{{url_for('editar_usuario_vista',id=usuario[0]) }}">
+                    <a href="{{url_for('editar_usuario_vista',id=tabla[0])}}">
                     {% endif %}
                         <img src={{ url_for('static', filename='img/edit.png') }}  width="50" class="sobre"/>
                     </a>
                 </div>  
                 <div class="col">
-                    <a href="#eliminar" data-toggle="modal">
-                        <input type="reset" form="formulario_producto" class="btn btn-outline-danger" id="btn_delete" value="">
-                     </a>
-
+                        <a href="#eliminar{{tabla[0]}}" data-toggle="modal"><input type="image" width="48" src={{ url_for('static', filename='img/delete.png') }} class="sobre" id="btn-eliminar"/></a>
                 </div>
                  {% endif %}
             </div>
@@ -87,7 +84,7 @@
                         <p>
                             ID:       
                         </p>
-                        <input value="id" autofocus type="number">
+                        <input required value="id" name="id" autofocus type="number">
                     </div>
                     {%endif%}
                     <div>
@@ -106,7 +103,7 @@
                     {%else%}
                     <div>
                         <p for="">
-                            e-mail:
+                            E-mail:
                         </p>
                         <input required name="email" type="email">
                     </div>
@@ -188,7 +185,7 @@
             {%if submenu == 'Editar'%}
             <div class="foto_producto">
                 <div class="contenedor_img">
-                    <div id="preview" class="imagen"><img src="/static/img/{{usuario[5]}}" alt=""></div>
+                    <div id="preview" class="imagen"><img src="/static/img/{{tabla[5]}}" alt=""></div>
                 </div>
                 <div class="input-group">
                     <input type="file" accept="image/*" form="formulario" name="img" class="" id="seleccionArchivos" aria-describedby="inputGroupFileAddon04" aria-label="Upload" onclick="previsualizar()">
@@ -202,35 +199,35 @@
                         <p>
                             Identificación:       
                         </p>
-                        <input readonly value="{{usuario[0]}}" maxlength="10" minlength="7" name="content" type="number">
+                        <input readonly value="{{tabla[0]}}" maxlength="10" minlength="7" name="content" type="number">
                     </div>
                     {%else%}
                     <div>
                         <p>
                             ID:       
                         </p>
-                        <input value="id" autofocus type="number">
+                        <input readonly value="{{tabla[0]}}" name="id" autofocus type="number">
                     </div>
                     {%endif%}
                     <div>
                         <p for="">
                             Nombre:
                         </p>
-                        <input value="{{usuario[1]}}" name="nombre" type="text" minlength="2">
+                        <input value="{{tabla[1]}}" name="nombre" type="text" minlength="2">
                     </div>
                     {%if menu=='Usuarios'%}
                     <div>
                         <p for="">
                             Usuario:
                         </p>
-                        <input  value="{{usuario[2]}}" name="usuario" id="contra" type="text" onsubmit="validar_contraseña()">
+                        <input  value="{{tabla[2]}}" name="usuario" id="contra" type="text" onsubmit="validar_contraseña()">
                     </div>
                     {%else%}
                     <div>
                         <p for="">
                             e-mail:
                         </p>
-                        <input required name="email" type="email">
+                        <input value="{{tabla[3]}}" name="email" type="email">
                     </div>
                     {%endif%}
                     {%if menu=='Usuarios'%}
@@ -238,14 +235,14 @@
                         <p for="">
                             Password:
                         </p>
-                        <input value="{{usuario[3]}}" name="password" type="password">
+                        <input value="{{tabla[3]}}" name="password" type="password">
                     </div>
                     {%else%}
                     <div>
                         <p for="">
                             Teléfono de contacto:
                         </p>
-                        <input required name="telefono" type="number" min="3000000000" max="3600000000">
+                        <input value="{{tabla[8]}}" name="telefono" type="number" min="3000000000" max="3600000000">
                     </div>
                     {%endif%}
                     {%if menu=='Usuarios'%}
@@ -253,14 +250,14 @@
                         <p for="">
                             E-mail:
                         </p>
-                        <input value="{{usuario[4]}}" name="email" type="email">
+                        <input value="{{tabla[4]}}" name="email" type="email">
                     </div>
                     {%else%}
                     <div>
                         <p for="">
                             Ciudad:
                         </p>
-                        <input required name="ciudad" type="text">
+                        <input value="{{tabla[6]}}" name="ciudad" type="text">
                     </div>
                     {%endif%}
                     {%if menu=='Usuarios'%}
@@ -268,28 +265,28 @@
                         <p for="">
                             Teléfono de contacto:
                         </p>
-                        <input value="{{usuario[8]}}" name="telefono" type="number" min="3000000000" max="3600000000">
+                        <input value="{{tabla[8]}}" name="telefono" type="number" min="3000000000" max="3600000000">
                     </div>
                     {%else%}
                     <div>
                         <p for="">
                             Dirección:
                         </p>
-                        <input required name="direccion" type="text" min="">
+                        <input value="{{tabla[2]}}" name="direccion" type="text" min="">
                     </div>
                     {%endif%}
                     <div>
                         <p for="">
                             Fecha de registro:
                         </p>
-                        <input value="{{usuario[6]}}" type="date" name="fregistro" placeholder="dd/mm/aaaa" required>
+                        <input value="{{tabla[4]}}" type="date" name="fregistro" placeholder="dd/mm/aaaa" required>
                     </div>
                     {%if menu!='Usuarios'%}
                     <div>
                         <p for="">
                             Descripción:
                         </p>
-                        <input name="descrpcion" type="text">
+                        <input value="{{tabla[7]}}" name="descrpcion" type="text">
                     </div>
                     <div>
                     {%endif%}
@@ -299,11 +296,11 @@
                             Rol:       
                         </p>
                         <select name="rol">
-                            {%if usuario[7]=='1'%}
+                            {%if tabla[7]=='1'%}
                             <option value="1">Usuario final</option>
                             <option value="2">Administrador</option>
                             <option value="3">Super administrador</option>
-                            {%elif usuario[7]=='2'%}
+                            {%elif tabla[7]=='2'%}
                             <option value="2">Administrador</option>
                             <option value="1">Usuario final</option>
                             <option value="3">Super administrador</option>
@@ -319,7 +316,7 @@
             </div>
             {%elif submenu =='Información'%}
             <div class="foto_producto">
-                <img src='/static/img/{{usuario[5]}}'/>
+                <img src='/static/img/{{tabla[5]}}'/>
             </div>
             <div class="formulario">
                 <form action="" method="GET">
@@ -328,35 +325,35 @@
                         <p>
                             Identificación:       
                         </p>
-                        <input readonly value="{{usuario[0]}}" maxlength="10" minlength="7" name="content" type="number">
+                        <input readonly value="{{tabla[0]}}" maxlength="10" minlength="7" name="content" type="number">
                     </div>
                     {%else%}
                     <div>
                         <p>
                             ID:       
                         </p>
-                        <input readonly value="id" autofocus type="number">
+                        <input readonly value="{{tabla[0]}}" autofocus type="number">
                     </div>
                     {%endif%}
                     <div>
                         <p for="">
                             Nombre:
                         </p>
-                        <input readonly value="{{usuario[1]}}" name="nombre" type="text" minlength="2">
+                        <input readonly value="{{tabla[1]}}" name="nombre" type="text" minlength="2">
                     </div>
                     {%if menu=='Usuarios'%}
                     <div>
                         <p for="">
                             Usuario:
                         </p>
-                        <input readonly value="{{usuario[2]}}" name="usuario" id="contra" type="text" onsubmit="validar_contraseña()">
+                        <input readonly value="{{tabla[2]}}" name="usuario" id="contra" type="text" onsubmit="validar_contraseña()">
                     </div>
                     {%else%}
                     <div>
                         <p for="">
                             e-mail:
                         </p>
-                        <input readonly name="email" type="email">
+                        <input readonly value="{{tabla[3]}}" name="email" type="email">
                     </div>
                     {%endif%}
                     {%if menu=='Usuarios'%}
@@ -364,14 +361,14 @@
                         <p for="">
                             Password:
                         </p>
-                        <input readonly value="{{usuario[3]}}" name="password" type="password">
+                        <input readonly value="{{tabla[3]}}" name="password" type="password">
                     </div>
                     {%else%}
                     <div>
                         <p for="">
                             Teléfono de contacto:
                         </p>
-                        <input  readonly name="telefono" type="number" min="3000000000" max="3600000000">
+                        <input  readonly value="{{tabla[8]}}" name="telefono" type="number" min="3000000000" max="3600000000">
                     </div>
                     {%endif%}
                     {%if menu=='Usuarios'%}
@@ -379,14 +376,14 @@
                         <p for="">
                             E-mail:
                         </p>
-                        <input readonly value="{{usuario[4]}}" name="email" type="email">
+                        <input readonly value="{{tabla[4]}}" name="email" type="email">
                     </div>
                     {%else%}
                     <div>
                         <p for="">
                             Ciudad:
                         </p>
-                        <input readonly name="ciudad" type="text">
+                        <input readonly value="{{tabla[6]}}" name="ciudad" type="text">
                     </div>
                     {%endif%}
                     {%if menu=='Usuarios'%}
@@ -394,28 +391,28 @@
                         <p for="">
                             Teléfono de contacto:
                         </p>
-                        <input readonly value="{{usuario[8]}}" name="telefono" type="number" min="3000000000" max="3600000000">
+                        <input readonly value="{{tabla[8]}}" name="telefono" type="number" min="3000000000" max="3600000000">
                     </div>
                     {%else%}
                     <div>
                         <p for="">
                             Dirección:
                         </p>
-                        <input readonly name="direccion" type="text" min="">
+                        <input readonly value="{{tabla[2]}}" name="direccion" type="text" min="">
                     </div>
                     {%endif%}
                     <div>
                         <p for="">
                             Fecha de registro:
                         </p>
-                        <input readonly value="{{usuario[6]}}" type="date" name="fregistro" placeholder="dd/mm/aaaa" required>
+                        <input readonly value="{{tabla[4]}}" type="date" name="fregistro" placeholder="dd/mm/aaaa" required>
                     </div>
                     {%if menu!='Usuarios'%}
                     <div>
                         <p for="">
                             Descripción:
                         </p>
-                        <input readonly name="descrpcion" type="text">
+                        <input readonly value="{{tabla[7]}}" name="descrpcion" type="text">
                     </div>
                     <div>
                     {%endif%}
@@ -425,9 +422,9 @@
                             Rol:       
                         </p>
                         <select name="rol">
-                            {%if usuario[7]=='1'%}
+                            {%if tabla[7]=='1'%}
                             <option value="1">Usuario final</option>
-                            {%elif usuario[7]=='2'%}
+                            {%elif tabla[7]=='2'%}
                             <option value="2">Administrador</option>
                             {%else%}
                             <option value="3">Super administrador</option>
@@ -436,27 +433,28 @@
                     {% endif %}
                 </form>
             </div>
-            {%endif%}
-        </div>
-    </diiv>
-    <div class="modal fade" id="eliminar">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h4 class="modal-title">¡¡¡ Confirmación de Eliminación !!!</h4>
-                    <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
-                </div>
-
-                <div class="modal-body">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore doloribus nobis architecto ea numquam officia ipsam accusantium illum, nisi inventore minima distinctio eius iure explicabo accusamus! Repellendus dolorum quia ipsam?</p>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Eliminar</button>
+            <div class="modal fade" id="eliminar{{tabla[0]}}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">¡¡¡ Confirmación de Eliminación !!!</h4>
+                            <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Estas seguro que deseas eliminar el {{menu}} {{tabla[1]}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            {%if menu=='Usuarios' %}
+                            <a href="{{url_for('delete_usuario',id=tabla[0])}}"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                            {%elif menu=='Proveedores'%}
+                            <a href="{{url_for('delete_proveedor',id=tabla[0])}}"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                            {%endif%}
+                        </div>
+                    </div>
                 </div>
             </div>
+            {%endif%}
         </div>
     </div>
 </section>
