@@ -34,14 +34,14 @@
                      <h2>{{submenu}} {{menu}}</h2>
                  </div>
                  {%if submenu=='Registrar' or submenu =='Editar'%}
-                 <div class="col">
+                 <div class="col" id="col_2">
                      <input type="submit" form="formulario" class="btn btn-outline-success" id="btn_enviar" value="" onsubmit="send()">
                  </div>
-                 <div class="col">
+                 <div class="col" id="col_2">
                      <input type="reset" form="formulario" class="btn btn-outline-danger" id="btn_cancelar" onclick="location.reload()" value="">
                  </div>
                  {%elif submenu=='Información'%}
-                <div class="col">
+                <div class="col" id="col_2">
                     <!-- <input type="submit"  class="btn btn-outline" id="btn_editar" value=""> -->
                     {% if menu=='Productos' %}
                     <a href="{{url_for('editar_producto_vista') }}">
@@ -53,7 +53,7 @@
                         <img src={{ url_for('static', filename='img/edit.png') }}  width="50" class="sobre"/>
                     </a>
                 </div>  
-                <div class="col">
+                <div class="col" id="col_2">
                         <a href="#eliminar{{tabla[0]}}" data-toggle="modal"><input type="image" width="48" src={{ url_for('static', filename='img/delete.png') }} class="sobre" id="btn-eliminar"/></a>
                 </div>
                  {% endif %}
@@ -82,7 +82,7 @@
                     {%else%}
                     <div>
                         <p>
-                            ID:       
+                            NIT:       
                         </p>
                         <input required value="id" name="id" autofocus type="number">
                     </div>
@@ -205,7 +205,7 @@
                     {%else%}
                     <div>
                         <p>
-                            ID:       
+                            NIT:       
                         </p>
                         <input readonly value="{{tabla[0]}}" name="id" autofocus type="number">
                     </div>
@@ -232,14 +232,11 @@
                     </div>
                     {%endif%}
                     {%if menu=='Usuarios'%}
-                    <div class="contrasena">
+                    <div>
                         <p for="">
                             Contraseña:
                         </p>
-                        <input value="{{usuario[3]}}" name="password" type="password" id="password">
-                        <span id="mostrar">
-                            <img src="{{url_for('static', filename='img/view.png') }}" alt="Mostrar contraseña" id="vision"/>    
-                        </span>
+                        <input value="{{tabla[3]}}" name="password" type="password" id="password">
                     </div>
                     {%else%}
                     <div>
@@ -355,7 +352,7 @@
                     {%else%}
                     <div>
                         <p>
-                            ID:       
+                            NIT:       
                         </p>
                         <input readonly value="{{tabla[0]}}" autofocus type="number">
                     </div>
@@ -437,7 +434,7 @@
                         <p for="">
                             Descripción:
                         </p>
-                        <input readonly value="{{tabla[7]}}" name="descrpcion" type="text">
+                        <input readonly value="{{tabla[7]}}" name="descripcion" type="text">
                     </div>
                     <div>
                     {%endif%}
@@ -462,5 +459,7 @@
         </div>
     </div>
 </section>
+{% endblock %}
+{% block js %}
 <script src="{{url_for('static', filename='js/script.js')}}"></script>
 {% endblock %}
