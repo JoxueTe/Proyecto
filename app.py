@@ -119,7 +119,7 @@ def update_proveedor():
     ciudad=request.form['ciudad']
     telefono=request.form['telefono']
     descripcion=request.form['descripcion']
-    edit_proveedor(id,nombre,direccion,email,img,fregistro,ciudad,telefono,descripcion)
+    edit_proveedor(id,nombre,direccion,email,fregistro,img,ciudad,telefono,descripcion)
     return redirect(url_for('registrar_proveedor_vista'))
 
 @app.route('/delete-Proveedores/<id>', methods=['GET'])
@@ -182,8 +182,15 @@ def update_usuario():
     fregistro=request.form['fregistro']
     rol=request.form['rol']
     img=request.form['img']
-    password=password+usuario
-    password=generate_password_hash(password)
+    comp=get_one_usuario(id)
+    comparacion=comp[3]
+    if comparacion == password :
+        print("Son iguales")
+        password=password
+    else:
+        print("Son diferentes")
+        password=password+usuario
+        password=generate_password_hash(password)
     edit_usuario(id,nombre,usuario,password,email,img,fregistro,rol,telefono)
     return redirect(url_for('editar_usuario_vista',id=id))
 
