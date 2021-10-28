@@ -120,7 +120,7 @@ def update_proveedor():
     telefono=request.form['telefono']
     descripcion=request.form['descripcion']
     edit_proveedor(id,nombre,direccion,email,fregistro,img,ciudad,telefono,descripcion)
-    return redirect(url_for('registrar_proveedor_vista'))
+    return redirect(url_for('editar_proveedor_vista',id=id))
 
 @app.route('/delete-Proveedores/<id>', methods=['GET'])
 def delete_proveedor(id):

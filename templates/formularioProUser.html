@@ -46,7 +46,7 @@
                     {% if menu=='Productos' %}
                     <a href="{{url_for('editar_producto_vista') }}">
                     {% elif menu=='Proveedores' %}
-                    <a href="{{url_for('editar_proveedor_vista',id=tabla[0]) }}">
+                    <a href="{{url_for('editar_proveedor_vista',id=tabla[0])}}">
                     {% else %}
                     <a href="{{url_for('editar_usuario_vista',id=tabla[0])}}">
                     {% endif %}

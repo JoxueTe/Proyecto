@@ -43,7 +43,7 @@ def get_all_usuario():
 
 #---------------------------------------------------------------------CRUD PROVEEDOR---------------------------------------------
 
-def insert_proveedor(id,nombre,direccion,email,imagen,fregistro,ciudad,telefono,descripcion):
+def insert_proveedor(id,nombre,direccion,email,fregistro,imagen,ciudad,telefono,descripcion):
     db = get_db()
     cursor = db.cursor()
     statement= "INSERT INTO proveedor(id_prov,nom_prov,dirección_prov,email_prov,fecha_ingreso_prov,img_prov,ciudad_prov,tel_prov,desc_prov) VALUES(?,?,?,?,?,?,?,?,?)"
