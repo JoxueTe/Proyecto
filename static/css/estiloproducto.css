@@ -64,7 +64,7 @@
     color: #073763;
 }
 
-.col{
+#col_2{
     position: relative;  
     display: grid;
     justify-content: center;  
@@ -102,4 +102,20 @@
     height: 48px;
     border-radius: 30%;
     border-color: transparent;
+}
+
+.contrasena{
+    position: absolute;
+}
+
+#vision {
+    width: 25px;
+    margin-bottom: 2px;
+    position: relative;
+    z-index: 1;
+    right: 40px;
+}
+
+#vision:hover {
+    cursor: pointer;
 }
