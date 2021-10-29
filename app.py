@@ -119,6 +119,9 @@ def update_proveedor():
     ciudad=request.form['ciudad']
     telefono=request.form['telefono']
     descripcion=request.form['descripcion']
+    if img=='':
+        dataimg=get_one_proveedor(id)
+        img=dataimg[5]
     edit_proveedor(id,nombre,direccion,email,fregistro,img,ciudad,telefono,descripcion)
     return redirect(url_for('editar_proveedor_vista',id=id))
 
@@ -168,6 +171,8 @@ def create_usuario():
     img=request.form['img']
     password=password+usuario
     password=generate_password_hash(password)
+    if img=='' or img=='none':
+        img='photo.png'
     insert_usuario(id,nombre,usuario,password,email,img,fregistro,rol,telefono)
     return redirect(url_for('registrar_usuario_vista'))
 
@@ -184,6 +189,7 @@ def update_usuario():
     img=request.form['img']
     comp=get_one_usuario(id)
     comparacion=comp[3]
+    print(img)
     if comparacion == password :
         print("Son iguales")
         password=password
@@ -191,6 +197,9 @@ def update_usuario():
         print("Son diferentes")
         password=password+usuario
         password=generate_password_hash(password)
+    if img=='':
+        dataimg=get_one_usuario(id)
+        img=dataimg[5]
     edit_usuario(id,nombre,usuario,password,email,img,fregistro,rol,telefono)
     return redirect(url_for('editar_usuario_vista',id=id))
 
