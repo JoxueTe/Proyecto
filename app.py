@@ -105,7 +105,7 @@ def create_proveedor():
     telefono=request.form['telefono']
     descripcion=request.form['descripcion']
     if img=='':
-        img='photo.png'
+        img='proveedores-icon.png'
     insert_proveedor(id,nombre,direccion,email,fregistro,img,ciudad,telefono,descripcion)
     return redirect(url_for('registrar_proveedor_vista'))
 
@@ -174,7 +174,7 @@ def create_usuario():
     password=password+usuario
     password=generate_password_hash(password)
     if img=='':
-        img='photo.png'
+        img='usuarios-icon.png'
     insert_usuario(id,nombre,usuario,password,email,img,fregistro,rol,telefono)
     return redirect(url_for('registrar_usuario_vista'))
 
