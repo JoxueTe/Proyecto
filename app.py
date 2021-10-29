@@ -104,7 +104,9 @@ def create_proveedor():
     ciudad=request.form['ciudad']
     telefono=request.form['telefono']
     descripcion=request.form['descripcion']
-    insert_proveedor(id,nombre,direccion,email,img,fregistro,ciudad,telefono,descripcion)
+    if img=='':
+        img='photo.png'
+    insert_proveedor(id,nombre,direccion,email,fregistro,img,ciudad,telefono,descripcion)
     return redirect(url_for('registrar_proveedor_vista'))
 
 
@@ -171,7 +173,7 @@ def create_usuario():
     img=request.form['img']
     password=password+usuario
     password=generate_password_hash(password)
-    if img=='' or img=='none':
+    if img=='':
         img='photo.png'
     insert_usuario(id,nombre,usuario,password,email,img,fregistro,rol,telefono)
     return redirect(url_for('registrar_usuario_vista'))
