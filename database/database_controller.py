@@ -1,5 +1,49 @@
 from database.db import get_db
 
+#-----------------------------consulta email, nombre y contraseña----------------------------------
+def consult_email(email):
+    db=get_db()
+    cursor=db.cursor()
+    statement="SELECT  email_usua FROM usuario WHERE email_usua=?"
+    cursor.execute(statement,[email])
+    return cursor.fetchone()
+
+def consult_name(name):
+    db=get_db()
+    cursor=db.cursor()
+    statement="SELECT usuari_usua FROM usuario WHERE usuari_usua=?"
+    cursor.execute(statement,[name])
+    return cursor.fetchone()
+
+def consult_password(usuario):
+    db=get_db()
+    cursor=db.cursor()
+    statement="SELECT passw_usua FROM usuario WHERE usuari_usua=?"
+    cursor.execute(statement,[usuario])
+    return cursor.fetchone()
+
+
+def consult_password_email(email):
+    db=get_db()
+    cursor=db.cursor()
+    statement="SELECT passw_usua FROM usuario WHERE email_usua=?"
+    cursor.execute(statement,[email])
+    return cursor.fetchone()
+
+def consult_nombre_email(name):
+    db=get_db()
+    cursor=db.cursor()
+    statement="SELECT nom_usua FROM usuario WHERE email_usua=?"
+    cursor.execute(statement,[name])
+    return cursor.fetchone()
+
+def consult_nombre_usua(name):
+    db=get_db()
+    cursor=db.cursor()
+    statement="SELECT nom_usua FROM usuario WHERE usuari_usua=?"
+    cursor.execute(statement,[name])
+    return cursor.fetchone()
+    
 #---------------------------------------------------------------------CRUD USUARIO---------------------------------------------
 def insert_usuario(id,nombre,usuario,contraseña,email,imagen,fingreso,rol,telefono):
     db = get_db()

@@ -13,13 +13,25 @@
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/sweetalert2.min.css') }}"> -->
 </head>
 <body>
+    {% with messages = get_flashed_messages() %}
+            {%if messages%}
+                {% for message in messages%}
+                    <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                        <strong>{{message}}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {%endfor%}
+            {%endif%}
+       {%endwith%}
     <section>
         <div class="login">
             <div class="titulo">
                 <h2>Inicio de sesión</h2>
             </div>
             <div class="f_acceso">
-                <form action="" name="fregistro" method="GET" onsubmit="validar_formulario()">
+                <form action="/logueo" name="fregistro" method="POST" onsubmit="validar_formulario()">
                     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
                     <div class="solicitar">
                         <span>

@@ -1,9 +1,8 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for,flash
 from database.database_controller import *
 from flask.helpers import url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 import forms, os
-
 
 
 app = Flask(__name__)
@@ -16,6 +15,48 @@ app.config['SECRET_KEY'] = SECRET_KEY
 @app.route("/login")
 def login_vista():
     return render_template('login.html')
+
+@app.route("/logueo", methods=['POST'])
+def logueo():
+    username=request.form['nombre']
+    password_usuario=request.form['pass']
+    print("nombre de usuario "+ username)
+    print("Contraseña ingresada "+ password_usuario)
+    consulta_usua= consult_name(username)
+    consulta_email=consult_email(username)
+
+    # result=check_password_hash()
+    if consulta_usua :
+        print("prueba por usuario")
+        consulta_pass=consult_password(username)
+        contra=consulta_pass[0]
+        if check_password_hash(contra,password_usuario):
+            print("Cotraseña correcta")
+            nombre_usua=consult_nombre_usua(username)
+            name_usuario=nombre_usua[0]
+            success_message = 'Bienvenido {}'.format(name_usuario)
+            flash(success_message)
+            return render_template('dashboard.html')
+        else:
+            print("contraseña incorrecta")
+            return render_template('login.html')
+    elif consulta_email :
+        print("prueba por email")
+        consulta_password_email=consult_password_email(username)
+        contraseña=consulta_password_email[0]
+        if check_password_hash(contraseña,password_usuario):
+            print("contraseña correcta por email")
+            nombre_usua=consult_nombre_email(username)
+            name_usuario=nombre_usua[0]
+            success_message = 'Bienvenido {}'.format(name_usuario)
+            flash(success_message)
+            return render_template('dashboard.html')
+    else:
+        app.logger.info('El usuario no existe')
+        success_mensage='El usuario o la contraseña no coinciden'
+        flash(success_mensage)
+        return render_template('login.html')
+
 
 #---------------------------------< RUTA DE RECUPERAR CONTRASEÑA >----------------------------
 @app.route("/recuperar")
@@ -171,7 +212,7 @@ def create_usuario():
     fregistro=request.form['fregistro']
     rol=request.form['rol']
     img=request.form['img']
-    password=password+usuario
+    password=password
     password=generate_password_hash(password)
     if img=='':
         img='usuarios-icon.png'
@@ -197,7 +238,7 @@ def update_usuario():
         password=password
     else:
         print("Son diferentes")
-        password=password+usuario
+        password=password
         password=generate_password_hash(password)
     if img=='':
         dataimg=get_one_usuario(id)
