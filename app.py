@@ -5,6 +5,16 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import forms, os
 from flask_login import LoginManager
 import smtplib
+from flask_login import login_required, LoginManager
+
+from flask import session
+
+# Set the secret key to some random bytes. Keep this really secret!
+
+
+
+
+
 
 
 
@@ -12,12 +22,30 @@ app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
 app.config['SECRET_KEY'] = SECRET_KEY
 # SECRET_KEY = 'misiontic'
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = '/login'
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
 
 #--------------------------------< RUTA PRINCIPAL DE LOGUEO >-----------------------------
 @app.route("/")
 @app.route("/login")
 def login_vista():
+
+
+
     return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    # remove the username from the session if it's there
+    session.pop('nombre', None)
+    return redirect(url_for('/'))
 
 @app.route("/logueo", methods=['POST'])
 def logueo():
@@ -27,6 +55,12 @@ def logueo():
     print("Contraseña ingresada "+ password_usuario)
     consulta_usua= consult_name(username)
     consulta_email=consult_email(username)
+
+    """ if 'nombre' in session:
+        return f'Logged in as {session["nombre"]}'
+    if request.method == 'POST':
+        session['nombre'] = request.form['nombre']
+        return redirect(url_for('login_vista')) """
 
     # result=check_password_hash()
     if consulta_usua :
@@ -69,6 +103,7 @@ def logueo():
 #---------------------------------< RUTA DE RECUPERAR CONTRASEÑA >----------------------------
 @app.route("/recuperar")
 def recuperar_vista():
+<<<<<<< HEAD
     return render_template('recuperar.html')
 
 @app.route("/recuperar/enviado", methods=['POST'])
@@ -82,9 +117,15 @@ def recuperar():
         flash(success_mensage)
         return render_template('recuperar.html')
     return render_template('recuperar.html')
+=======
+    #email = request.form["correo"] 
+   
+    return render_template("recuperar.html")
+>>>>>>> 596904bcf0dbe644faf9222559bb41ebf8a32c52
 
 #-------------------------------< VISTA DEL DASHBOARD >--------------------------------------
 @app.route("/dashboard")
+@login_required
 def dashboard_vista():
     return render_template('dashboard.html')
 
