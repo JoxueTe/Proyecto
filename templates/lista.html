@@ -48,7 +48,7 @@
             {% for tabla in tablas %}
             <article class="tarjeta">
                 {% if menu=='Productos' %}
-                <a href="{{url_for('info_productos_vista',id=tabla[0])}}">
+                <a href="{{url_for('info_producto_vista',id=tabla[0])}}">
                 {% elif menu=='Proveedores' %}
                 <a href="{{url_for('info_proveedor_vista',id=tabla[0])}}">
                 {% else %}
@@ -59,7 +59,7 @@
                     <div class="franja">
                         <div id="editar">
                             {% if menu=='Productos' %}
-                            <a href="{{url_for('editar_producto_vista') }}">
+                            <a href="{{url_for('editar_producto_vista',id=tabla[0])}}">
                             {% elif menu=='Proveedores' %}
                             <a href="{{url_for('editar_proveedor_vista',id=tabla[0])}}">
                             {% else %}
@@ -76,7 +76,7 @@
                 <div class="nombre-datos">
                     <h5 style="color: Black" class="nombre">{{ tabla[1] }}</h5>
                     {% if menu=='Productos' %}
-                    <p style="color: Black" class="datos">{{ usuario.cantidad }}</p>
+                    <p style="color: Black" class="datos">{{ tabla[7] }}</p>
                     {% else %}
                     <p style="color: Black" class="datos">{{ tabla[8] }}</p>
                     {% endif %}
@@ -99,6 +99,8 @@
                             <a href="{{url_for('delete_usuario',id=tabla[0])}}"><button type="button" class="btn btn-primary">Eliminar</button></a>
                             {%elif menu=='Proveedores'%}
                             <a href="{{url_for('delete_proveedor',id=tabla[0])}}"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                            {%elif menu=='Productos'%}
+                            <a href="{{url_for('delete_producto',id=tabla[0])}}"><button type="button" class="btn btn-primary">Eliminar</button></a>
                             {%endif%}
                         </div>
                     </div>

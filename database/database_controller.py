@@ -129,27 +129,27 @@ def get_all_proveedor():
 
 #---------------------------------------------------------------------CRUD PRODUCTO---------------------------------------------
 
-def insert_producto(id,nombre,direccion,email,imagen,fregistro,ciudad,telefono,descripcion):
+def insert_producto(id,nombre,cantidad_minima,cant_max,descripcion,img,fregistro,cantidad,proveedores,precio,cantidadprov):
     db = get_db()
     cursor = db.cursor()
-    statement= "INSERT INTO producto(id_prod,nom_prod,cant_min_prod,cant_max_prod, desc_prod,img_prod,fecha_ing_prod,cant_prod) VALUES(?,?,?,?,?,?,?,?,?)"
-    cursor.execute(statement,[id,nombre,direccion,email,fregistro,imagen,ciudad,telefono,descripcion])
+    statement= "INSERT INTO producto(id_prod,nom_prod,cant_min_prod,cant_max_prod,desc_prod,img_prod,fecha_ing_prod,cant_prod,prov_prod,precio,cantidad_prov) VALUES(?,?,?,?,?,?,?,?,?,?,?)"
+    cursor.execute(statement,[id,nombre,cantidad_minima,cant_max,descripcion,img,fregistro,cantidad,proveedores,precio,cantidadprov])
     db.commit()
     db.close()
     return True
 
-def edit_producto(id,nombre,usuario,contraseña,email,imagen,fingreso,rol,telefono):
+def edit_producto(id,nombre,cantidad_minima,cant_max,descripcion,img,fregistro,cantidad,proveedores,precio,cantidadprov):
     db = get_db()
     cursor = db.cursor()
-    statement= "UPDATE usuario SET nom_usua = ?, usuari_usua = ?, passw_usua = ?, email_usua = ?, img_usua = ?, fecha_ingreso_usua = ?, rol_usua = ?, tel_usua = ? WHERE identif_usua = ?;"
-    cursor.execute(statement,[nombre,usuario,contraseña,email,imagen,fingreso,rol,telefono,id])
+    statement= "UPDATE producto SET nom_prod = ?, cant_min_prod = ?, cant_max_prod = ?, desc_prod = ?, img_prod = ?, fecha_ing_prod = ?, cant_prod = ?, prov_prod = ?, precio = ?, cantidad_prov = ? WHERE id_prod = ?;"
+    cursor.execute(statement,[nombre,cantidad_minima,cant_max,descripcion,img,fregistro,cantidad,proveedores,precio,cantidadprov,id])
     db.commit()
     return True
 
 def dell_producto(id):
     db = get_db()
     cursor = db.cursor()
-    statement= "DELETE FROM proveedor WHERE id_prov=?;"
+    statement= "DELETE FROM producto WHERE id_prod=?;"
     cursor.execute(statement,[id])
     db.commit()
     db.close()
@@ -158,14 +158,14 @@ def dell_producto(id):
 def get_one_producto(id):
     db = get_db()
     cursor = db.cursor()
-    statement= "SELECT id_prov,nom_prov,dirección_prov,email_prov,fecha_ingreso_prov,img_prov,ciudad_prov,desc_prov,tel_prov FROM proveedor WHERE id_prov=?;"
+    statement= "SELECT id_prod,nom_prod,cant_min_prod,cant_max_prod,desc_prod,img_prod,fecha_ing_prod,cant_prod,prov_prod,precio,cantidad_prov FROM producto WHERE id_prod=?;"
     cursor.execute(statement,[id])
     return cursor.fetchone()
 
 def get_all_producto():
     db = get_db()
     cursor = db.cursor()
-    query= "SELECT id_prov,nom_prov,dirección_prov,email_prov,fecha_ingreso_prov,img_prov,ciudad_prov,desc_prov,tel_prov FROM proveedor;"
+    query= "SELECT id_prod,nom_prod,cant_min_prod,cant_max_prod,desc_prod,img_prod,fecha_ing_prod,cant_prod,prov_prod,precio,cantidad_prov FROM producto;"
     cursor.execute(query)
     return cursor.fetchall()
 

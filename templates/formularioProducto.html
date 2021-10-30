@@ -46,27 +46,25 @@
                  </div> -->
                 <div class="col">
                     <!-- <input type="submit"  class="btn btn-outline" id="btn_editar" value=""> -->
-                    <a href="{{url_for('editar_producto_vista') }}">
+                    <a href="{{url_for('editar_producto_vista',id=tabla[0])}}">
                         <img src={{ url_for('static', filename='img/edit.png') }}  width="50" class="sobre"/>
                     </a>
                 </div>  
                 <div class="col">
-                    <a href="#eliminar" data-toggle="modal">
-                       <input type="reset" form="formulario_producto" class="btn btn-outline-danger" id="btn_delete" value="">
-                    </a>
+                    <a href="#eliminar{{tabla[0]}}" data-toggle="modal"><input type="image" width="48" src={{ url_for('static', filename='img/delete.png') }} class="sobre" id="btn-eliminar"/></a>
                 </div>
                 {% endif %}
             </div>
         </div>
         <div class="foto-formulario">
-            {%if submenu!='Información' %}
+            {%if submenu=='Registrar' %}
             <div class="foto_producto">
                 <div class="contenedor_img">
                     <div id="preview" class="imagen"><img src="/static/img/photo.png" alt=""></div>
                 </div>
                 <div class="input-group">
-                    <input type="file" class="" id="seleccionArchivos" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                    <script src="/static/js/pre.js"></script>
+                    <input type="file" accept="image/*" form="formulario_producto" name="img" class="" id="seleccionArchivos" aria-describedby="inputGroupFileAddon04" aria-label="Upload" onclick="previsualizar()">
+                    <script src="/static/js/script.js"></script>
                 </div>
             </div>
             <div class="formulario">
@@ -75,153 +73,224 @@
                         <p for="">
                             ID:       
                         </p>
-                        <input required type="number" min="100" max="100000">
+                        <input required {%if submenu =='Editar'%} readonly value="{{tabla[0]}}" {%endif%} name="id" type="number" min="100" max="100000">
                     </div>
                     <div>
                         <p for="">
                             Nombre:
                         </p>
-                        <input required type="text" minlength="4" maxlength="25">
+                        <input required  name="nombre" type="text" minlength="4" maxlength="25">
                     </div>
                     <div>
                         <p for="">
                             Cantidad mínima requerida:
                         </p>
-                        <input required type="number" min="1">
+                        <input required name="cantidadminima" type="number" min="1">
                     </div>
                     <div>
                         <p for="">
                             Cantidad máxima permitida:
                         </p>
-                        <input required type="number" min="1">
+                        <input required  name="cantidadmaxima" type="number" min="1">
                     </div>
                     <div>
                         <p for="">
                             Cantidad en existencia:
                         </p>
-                        <input required type="number" min="0">
+                        <input required  name="cantidadexistencia" type="number" min="0">
                     </div>
                     <div>
                         <p for="">
                             Precio:
                         </p>
-                        <input required type="number" min="10000">
+                        <input required  name="precio" type="number" min="10000">
                     </div>
                     <div>
                         <p for="">
                             Cantidad de proveedores:
                         </p>
-                        <input readonly type="number" min="1">
+                        <input required name="cantidadprov" type="number" min="1">
                     </div>
                     <div>
                         <p for="">
                             Fecha de registro:
                         </p>
-                        <input required type="date" placeholder="dd/mm/aaaa" required>
+                        <input required name="fregistro" type="date" placeholder="dd/mm/aaaa" required>
                     </div>
                     <div>
                         <p for="">
                             Descripción:
                         </p>
-                        <input type="text" minlength="5" maxlength="30">
+                        <input name="descripcion" type="text" minlength="5" maxlength="30">
                     </div>
                     <div>
                         <p for="">
                             Proveedores:
                         </p>
-                        <input type="text" required minlength="2">
+                        <input type="text" name="prov" required minlength="2">
                     </div>
                 </form>
             </div>
-            {%elif submenu=='Información' %}
+            {%elif submenu=='Editar' %}
             <div class="foto_producto">
-                <img src="{{ url_for('static', filename='img/photo.png') }}"/>
+                <div class="contenedor_img">
+                    <div id="preview" class="imagen"><img src="/static/img/{{tabla[5]}}" alt=""></div>
+                </div>
+                <div class="input-group">
+                    <input type="file" accept="image/*" form="formulario_producto" name="img" class="" id="seleccionArchivos" aria-describedby="inputGroupFileAddon04" aria-label="Upload" onclick="previsualizar()">
+                    <script src="/static/js/script.js"></script>
+                </div>
             </div>
             <div class="formulario">
-                <form action="" id="formulario_producto" method="GET">
+                <form action="/update-Productos" id="formulario_producto" method="POST">
                     <div>
                         <p for="">
                             ID:       
                         </p>
-                        <input readonly type="number" min="100" max="100000">
+                        <input required {%if submenu =='Editar'%} readonly value="{{tabla[0]}}" {%endif%} name="id" type="number" min="100" max="100000">
                     </div>
                     <div>
                         <p for="">
                             Nombre:
                         </p>
-                        <input readonly type="text" minlength="4" maxlength="25">
+                        <input required value="{{tabla[1]}}" name="nombre" type="text" minlength="4" maxlength="25">
                     </div>
                     <div>
                         <p for="">
                             Cantidad mínima requerida:
                         </p>
-                        <input readonly type="number" min="1">
+                        <input required value="{{tabla[2]}}" name="cantidadminima" type="number" min="1">
                     </div>
                     <div>
                         <p for="">
                             Cantidad máxima permitida:
                         </p>
-                        <input readonly type="number" min="1">
+                        <input required value="{{tabla[3]}}" name="cantidadmaxima" type="number" min="1">
                     </div>
                     <div>
                         <p for="">
                             Cantidad en existencia:
                         </p>
-                        <input readonly type="number" min="0">
+                        <input required value="{{tabla[7]}}" name="cantidadexistencia" type="number" min="0">
                     </div>
                     <div>
                         <p for="">
                             Precio:
                         </p>
-                        <input readonly type="number" min="10000">
+                        <input required value="{{tabla[9]}}" name="precio" type="number" min="10000">
                     </div>
                     <div>
                         <p for="">
                             Cantidad de proveedores:
                         </p>
-                        <input readonly type="number" min="1">
+                        <input value="{{tabla[10]}}" name="cantidadprov" type="number" min="1">
                     </div>
                     <div>
                         <p for="">
                             Fecha de registro:
                         </p>
-                        <input readonly type="date" placeholder="dd/mm/aaaa" required>
+                        <input required value="{{tabla[6]}}" name="fregistro" type="date" placeholder="dd/mm/aaaa" required>
                     </div>
                     <div>
                         <p for="">
                             Descripción:
                         </p>
-                        <input  readonly type="text" minlength="5" maxlength="30">
+                        <input value="{{tabla[4]}}" name="descripcion" type="text" minlength="5" maxlength="30">
                     </div>
                     <div>
                         <p for="">
                             Proveedores:
                         </p>
-                        <input type="text" readonly minlength="2">
+                        <input value="{{tabla[8]}}" type="text" name="prov" required minlength="2">
+                    </div>
+                </form>
+            </div>
+            {%elif submenu=='Información' %}
+            <div class="modal fade" id="eliminar{{tabla[0]}}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">¡¡¡ Confirmación de Eliminación !!!</h4>
+                            <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Estas seguro que deseas eliminar el {{menu}} {{tabla[1]}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <a href="{{url_for('delete_producto',id=tabla[0])}}"><button type="button" class="btn btn-primary">Eliminar</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="foto_producto">
+                <img src="/static/img/{{tabla[5]}}"/>
+            </div>
+            <div class="formulario">
+                <form action="" id="formulario_producto" method="POST">
+                    <div>
+                        <p for="">
+                            ID:       
+                        </p>
+                        <input readonly value="{{tabla[0]}}" type="number" min="100" max="100000">
+                    </div>
+                    <div>
+                        <p for="">
+                            Nombre:
+                        </p>
+                        <input readonly value="{{tabla[1]}}" type="text" minlength="4" maxlength="25">
+                    </div>
+                    <div>
+                        <p for="">
+                            Cantidad mínima requerida:
+                        </p>
+                        <input readonly value="{{tabla[2]}}" type="number" min="1">
+                    </div>
+                    <div>
+                        <p for="">
+                            Cantidad máxima permitida:
+                        </p>
+                        <input readonly value="{{tabla[3]}}" type="number" min="1">
+                    </div>
+                    <div>
+                        <p for="">
+                            Cantidad en existencia:
+                        </p>
+                        <input readonly value="{{tabla[7]}}" type="number" min="0">
+                    </div>
+                    <div>
+                        <p for="">
+                            Precio:
+                        </p>
+                        <input readonly value="{{tabla[9]}}" type="number" min="10000">
+                    </div>
+                    <div>
+                        <p for="">
+                            Cantidad de proveedores:
+                        </p>
+                        <input readonly value="{{tabla[10]}}" type="number" min="1">
+                    </div>
+                    <div>
+                        <p for="">
+                            Fecha de registro:
+                        </p>
+                        <input readonly value="{{tabla[6]}}" type="date" placeholder="dd/mm/aaaa" required>
+                    </div>
+                    <div>
+                        <p for="">
+                            Descripción:
+                        </p>
+                        <input  readonly value="{{tabla[4]}}" type="text" minlength="5" maxlength="30">
+                    </div>
+                    <div>
+                        <p for="">
+                            Proveedores:
+                        </p>
+                        <input value="{{tabla[8]}}" type="text" readonly minlength="2">
                     </div>
                 </form>
             </div>
             {%endif%}
-        </div>
-    </div>
-    <div class="modal fade" id="eliminar">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h4 class="modal-title">¡¡¡ Confirmación de Eliminación !!!</h4>
-                    <button tyle="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
-                </div>
-
-                <div class="modal-body">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore doloribus nobis architecto ea numquam officia ipsam accusantium illum, nisi inventore minima distinctio eius iure explicabo accusamus! Repellendus dolorum quia ipsam?</p>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Eliminar</button>
-                </div>
-            </div>
         </div>
     </div>
 </section>

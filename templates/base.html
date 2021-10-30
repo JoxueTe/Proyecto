@@ -23,7 +23,7 @@
             {%if messages%}
                 {% for message in messages%}
                 <div class="alert alert-success alert-dismissable fade show" role="alert">
-                    <strong>{{message}}</strong>
+                    <strong>{{message}}{{username}}</strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -63,8 +63,8 @@
                 </a>
                 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item">Usuario</a>
-                    <div class="dropdown-divider"></div>
+                    <!-- <a class="dropdown-item">{{user}}</a> -->
+                    <!-- <div class="dropdown-divider"></div> -->
                     <a class="dropdown-item" href="{{url_for('usuarios_vista') }}">Mi usuario</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{url_for('login_vista') }}">Cerrar Sesión</a>

@@ -39,6 +39,8 @@ def logueo():
             return render_template('dashboard.html')
         else:
             print("contraseña incorrecta")
+            success_mensage='Usuario o contraseña incorrecta, favor verificar'
+            flash(success_mensage)
             return render_template('login.html')
     elif consulta_email :
         print("prueba por email")
@@ -50,13 +52,16 @@ def logueo():
             name_usuario=nombre_usua[0]
             success_message = 'Bienvenido {}'.format(name_usuario)
             flash(success_message)
-            return render_template('dashboard.html')
+            return render_template('dashboard.html',)
+        else:
+            success_mensage='Usuario o contraseña incorrecta, favor verificar'
+            flash(success_mensage)
+            return render_template('login.html')
     else:
         app.logger.info('El usuario no existe')
-        success_mensage='El usuario o la contraseña no coinciden'
+        success_mensage='Usuario o contraseña incorrecta, favor verificar'
         flash(success_mensage)
         return render_template('login.html')
-
 
 #---------------------------------< RUTA DE RECUPERAR CONTRASEÑA >----------------------------
 @app.route("/recuperar")
@@ -72,8 +77,9 @@ def dashboard_vista():
 @app.route("/productos")
 def productos_vista():
     check = forms.FormCheckProduct()
+    productos=get_all_producto()
     menu="Productos"
-    return render_template('lista.html', menu=menu, check=check)
+    return render_template('lista.html', menu=menu, check=check, tablas=productos)
 
 @app.route("/productos/registrar")
 def registrar_producto_vista():
@@ -81,31 +87,59 @@ def registrar_producto_vista():
     menu="Productos"
     return render_template('formularioProducto.html', submenu=submenu, menu=menu)
 
-@app.route("/productos/editar")
-def editar_producto_vista():
+@app.route("/productos/editar/<int:id>")
+def editar_producto_vista(id):
+    producto=get_one_producto(id)
     submenu="Editar"
     menu="Productos"
-    return render_template('formularioProducto.html', submenu=submenu, menu=menu)
+    return render_template('formularioProducto.html', submenu=submenu, menu=menu, tabla=producto)
 
-@app.route("/productos/informacion")
-def info_producto_vista():
+@app.route("/productos/informacion/<int:id>")
+def info_producto_vista(id):
+    producto=get_one_producto(id)
     submenu="Información"
     menu="Productos"
-    return render_template('formularioProducto.html', submenu=submenu, menu=menu)
+    return render_template('formularioProducto.html', submenu=submenu, menu=menu, tabla=producto)
 
 @app.route('/create-Productos', methods=['POST'])
 def create_productos():
     id=request.form['id']
     nombre=request.form['nombre']
-    direccion=request.form['direccion']
-    email=request.form['email']
-    img=request.form['img']
+    cantidadminima=request.form['cantidadminima']
+    cantidadmaxima=request.form['cantidadmaxima']
+    cantidadexistencia=request.form['cantidadexistencia']
+    precio=request.form['precio']
+    cantidadprov=request.form['cantidadprov']
     fregistro=request.form['fregistro']
-    ciudad=request.form['ciudad']
-    telefono=request.form['telefono']
     descripcion=request.form['descripcion']
-    insert_proveedor(id,nombre,direccion,email,img,fregistro,ciudad,telefono,descripcion)
-    return redirect(url_for('registrar_proveedor_vista'))
+    img=request.form['img']
+    proveedores=request.form['prov']
+    insert_producto(id,nombre,cantidadminima,cantidadmaxima,descripcion,img,fregistro,cantidadexistencia,proveedores,precio,cantidadprov)
+    return redirect(url_for('registrar_producto_vista'))
+
+@app.route('/update-Productos', methods=['POST'])
+def update_productos():
+    id=request.form['id']
+    nombre=request.form['nombre']
+    cantidadminima=request.form['cantidadminima']
+    cantidadmaxima=request.form['cantidadmaxima']
+    cantidadexistencia=request.form['cantidadexistencia']
+    precio=request.form['precio']
+    cantidadprov=request.form['cantidadprov']
+    fregistro=request.form['fregistro']
+    descripcion=request.form['descripcion']
+    img=request.form['img']
+    proveedores=request.form['prov']
+    if img=='':
+        dataimg=get_one_producto(id)
+        img=dataimg[5]
+    edit_producto(id,nombre,cantidadminima,cantidadmaxima,descripcion,img,fregistro,cantidadexistencia,proveedores,precio,cantidadprov)
+    return redirect(url_for('editar_producto_vista',id=id))
+
+@app.route('/delete-Productos/<id>', methods=['GET'])
+def delete_producto(id):
+    dell_producto(id) 
+    return redirect(url_for('productos_vista'))
 
 #----------------------------------Proveedor--------------------------------------------
 @app.route("/proveedores")
