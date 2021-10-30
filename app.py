@@ -3,7 +3,6 @@ from database.database_controller import *
 from flask.helpers import url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 import forms, os
-from flask_login import LoginManager
 import smtplib
 from flask_login import login_required, LoginManager
 
@@ -103,7 +102,6 @@ def logueo():
 #---------------------------------< RUTA DE RECUPERAR CONTRASEÑA >----------------------------
 @app.route("/recuperar")
 def recuperar_vista():
-<<<<<<< HEAD
     return render_template('recuperar.html')
 
 @app.route("/recuperar/enviado", methods=['POST'])
@@ -117,11 +115,6 @@ def recuperar():
         flash(success_mensage)
         return render_template('recuperar.html')
     return render_template('recuperar.html')
-=======
-    #email = request.form["correo"] 
-   
-    return render_template("recuperar.html")
->>>>>>> 596904bcf0dbe644faf9222559bb41ebf8a32c52
 
 #-------------------------------< VISTA DEL DASHBOARD >--------------------------------------
 @app.route("/dashboard")
