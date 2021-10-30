@@ -3,7 +3,12 @@ from database.database_controller import *
 from flask.helpers import url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 import forms, os
+<<<<<<< HEAD
 from flask_login import LoginManager
+=======
+import smtplib
+
+>>>>>>> bccda90cddbec217e7e13f9b56eed64f370c83d5
 
 app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
@@ -66,6 +71,8 @@ def logueo():
 #---------------------------------< RUTA DE RECUPERAR CONTRASEÑA >----------------------------
 @app.route("/recuperar")
 def recuperar_vista():
+    email = request.form['correo']
+
     return render_template('recuperar.html')
 
 #-------------------------------< VISTA DEL DASHBOARD >--------------------------------------
@@ -289,3 +296,16 @@ def delete_usuario(id):
 if __name__ == '__main__':
     app.run(debug=True)
 
+# Función para enviar correo desde Python con librería smtplib
+def enviarCorreo(asunto, mensaje, destinatarios):
+    cuerpo = 'Subject: {}\n\n{}'.format(asunto, mensaje)
+
+    servidor = smtplib.SMTP('smtp-mail.outlook.com', 25)
+    servidor.starttls()
+
+    servidor.login('jelds.mintic.2022@hotmail.com', 'Kt$zk48pVEZ?=')
+
+    servidor.sendmail('jelds.mintic.2022@hotmail.com', destinatarios, cuerpo)
+    servidor.quit()
+
+    print('Correo enviado exitosamente')
