@@ -3,7 +3,7 @@ from database.database_controller import *
 from flask.helpers import url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 import forms, os
-
+from flask_login import LoginManager
 
 app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
