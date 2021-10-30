@@ -3,12 +3,10 @@ from database.database_controller import *
 from flask.helpers import url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 import forms, os
-<<<<<<< HEAD
 from flask_login import LoginManager
-=======
 import smtplib
 
->>>>>>> bccda90cddbec217e7e13f9b56eed64f370c83d5
+
 
 app = Flask(__name__)
 SECRET_KEY = os.urandom(32)
@@ -71,8 +69,18 @@ def logueo():
 #---------------------------------< RUTA DE RECUPERAR CONTRASEÑA >----------------------------
 @app.route("/recuperar")
 def recuperar_vista():
-    email = request.form['correo']
+    return render_template('recuperar.html')
 
+@app.route("/recuperar/enviado", methods=['POST'])
+def recuperar():
+    email=request.form['email']
+    consulta_email=consult_email(email)
+    if consulta_email:
+        print("Correo encontrado")
+    else:
+        success_mensage='Correo no registrado, favor verificar'
+        flash(success_mensage)
+        return render_template('recuperar.html')
     return render_template('recuperar.html')
 
 #-------------------------------< VISTA DEL DASHBOARD >--------------------------------------
